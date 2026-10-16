@@ -1,1 +1,136 @@
-/* Scroll-as-walking lands in build step 5. */
+/*
+ * Scroll is walking (§3.4) plus the Atrium's arrival. Pure CSS, position-driven: whatever the
+ * scroll position, every layer is legible, and without scroll timelines the layout is static.
+ * Disabled entirely under reduced motion or Stillness.
+ */
+.hall-hero__veil {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Atrium arrival: the spotlight warms up, then the headline steps into it. */
+  html:not([data-stillness='on']) .arrival__spotlight {
+    animation: spot-warm 1600ms var(--ease-out) both;
+  }
+  html:not([data-stillness='on']) .arrival__title,
+  html:not([data-stillness='on']) .arrival__hours,
+  html:not([data-stillness='on']) .arrival__cta {
+    animation: rise-in 900ms var(--ease-out) both;
+  }
+  html:not([data-stillness='on']) .arrival__hours {
+    animation-delay: 160ms;
+  }
+  html:not([data-stillness='on']) .arrival__cta {
+    animation-delay: 260ms;
+  }
+
+  @supports (animation-timeline: view()) {
+    /* Hall hero: the room starts in near-darkness; walking in widens the spotlight. */
+    html:not([data-stillness='on']) .hall-hero__veil {
+      display: block;
+      position: absolute;
+      inset: -40%;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 42%, transparent 0 9%, color-mix(in oklch, var(--surface-0), transparent 35%) 20%, var(--surface-0) 32%);
+      animation: veil-open linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 70vh;
+    }
+    html:not([data-stillness='on']) .hall-hero__text {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Diorama depth layers move at different rates; the label card steps forward. */
+    html:not([data-stillness='on']) .diorama__backdrop {
+      animation: layer-far linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+    html:not([data-stillness='on']) .diorama__specimen {
+      animation: layer-mid linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+    html:not([data-stillness='on']) .diorama__label {
+      animation: label-forward linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 50%;
+    }
+    html:not([data-stillness='on']) .vitrine__case {
+      animation: label-forward linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+}
+
+@keyframes spot-warm {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+@keyframes veil-open {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(2.4);
+    opacity: 0.15;
+  }
+}
+@keyframes layer-far {
+  from {
+    transform: translateY(6vh);
+  }
+  to {
+    transform: translateY(-6vh);
+  }
+}
+@keyframes layer-mid {
+  from {
+    transform: translateY(14vh);
+  }
+  to {
+    transform: translateY(-14vh);
+  }
+}
+/* Scale only: label text never dips below full contrast at any scroll position. */
+@keyframes label-forward {
+  from {
+    transform: scale(0.94);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .hall-hero__veil {
+    display: none !important;
+  }
+  .vitrine__dialog::backdrop,
+  .sealed-hall__scrim,
+  .site-header,
+  .minimap__panel {
+    backdrop-filter: none;
+  }
+  .site-header {
+    background: var(--surface-0);
+  }
+  .minimap__panel {
+    background: var(--surface-1);
+  }
+  .vitrine__dialog::backdrop {
+    background: var(--surface-0);
+  }
+}

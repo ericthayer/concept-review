@@ -42,3 +42,38 @@
   exhibition hero. Image and title each get a `view-transition-name` only inside `pageswap`/`pagereveal`
   and lose it when the transition finishes. `view-transition-class: hall-door` styles them all once.
 - Browser Back from a hall plays `exit` and morphs the hero back into its Directory card.
+
+## Step 5 · Scroll is walking
+
+- `src/styles/scroll.css`: a darkness veil over each hall hero opens with root scroll progress
+  (transform + opacity only); diorama backdrop and specimen layers move at different rates on `view()`
+  timelines; label cards and vitrine cases step forward (0.94 → 1). All inside
+  `@supports (animation-timeline: view())` and off under reduced motion or Stillness. Labels scale but never fade, so text holds full contrast at every scroll position.
+- Atrium arrival: the spotlight warms up and the headline, hours and ticket CTA rise in.
+- `prefers-reduced-transparency` swaps every blur and scrim for solid surfaces.
+
+## Step 6 · Same-document transitions
+
+- `transition(update, types)` helper (`src/dom/transition.ts`) runs `update()` directly when the API is
+  missing or calm mode is on, and skips any running transition rather than queueing.
+- Directory floor switcher (`<dmns-floorplan>`): one floor at a time, the stage slides like the stairwell,
+  focus moves to the new floor heading and a polite live region announces it.
+- Vitrine dialog (`<dmns-vitrine>`): native `showModal()`, plate morph from case to dialog, Esc, Close or
+  backdrop closes it and focus returns to the opener. Enter and Space both open.
+- Special Exhibitions filter (`<dmns-filter>`): staying cards morph, leaving cards fade into darkness.
+- `<dmns-doorway>` writes its own centre as the camera origin, `<dmns-event-corridor>` arrow buttons,
+  `<dmns-minimap>` closes on Escape or outside click, `<dmns-sealed-hall>` ties the closure to the heading.
+
+## Step 7 · Fallback ladder + Stillness audit
+
+- Verified in Playwright: no cross-document VT → lights-up entrance; reduced motion and Stillness → no
+  transform or filter animation anywhere; Stillness persists across navigation.
+- `tests/unit/motion-caps.test.ts` asserts that keyframes animate only transform/opacity/filter, that scale
+  stays within 1.4×, that rotation is Y-only and ≤ 8deg, and that every type has a calm substitute.
+- `docs/browser-support.md` and `docs/motion-spec.md`.
+
+## Step 8 · Polish
+
+- Staged opacity on every page move so two rooms are never double-exposed at full strength.
+- Header breakpoints keep Membership/Donate visible down to 70rem and never overflow (asserted 360–1920px).
+- Keyboard walkthrough recording script (`scripts/record-walkthrough.ts`).

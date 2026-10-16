@@ -28,7 +28,7 @@ export function renderExhibitions(ctx: BuildContext): string {
   const visible = exhibitions.filter((e) => exhibitionPhase(e, ctx.today) !== 'closed');
   const body = html`
   ${pageHeader(p.title, p.lede ?? null, 'Special Exhibitions')}
-  <section class="gallery" aria-label="${p.title}">
+  <dmns-filter class="gallery" role="region" aria-label="${p.title}">
     <div class="filter" role="group" aria-label="Filter exhibitions" data-filter hidden>
       <button type="button" class="filter__button" data-filter-value="all" aria-pressed="true">All</button>
       <button type="button" class="filter__button" data-filter-value="now" aria-pressed="false">Now open</button>
@@ -36,7 +36,7 @@ export function renderExhibitions(ctx: BuildContext): string {
     </div>
     <p class="visually-hidden" data-filter-status aria-live="polite"></p>
     <ul class="exhibit-grid" role="list" data-filter-list>${visible.map((e) => card(ctx, e))}</ul>
-  </section>`;
+  </dmns-filter>`;
   return page(ctx, { path: '/special-exhibitions/', title: p.title, room: p.title, description: p.lede ?? p.title, bodyClass: 'page-gallery' }, body);
 }
 
@@ -48,6 +48,7 @@ export function renderExhibition(ctx: BuildContext, e: Exhibition): string {
   <article class="exhibit" data-wing="special">
     <section class="hall-hero hall-hero--exhibit" id="hall-hero" aria-labelledby="exhibit-title">
       <div class="hall-hero__spotlight" aria-hidden="true"></div>
+      <div class="hall-hero__veil" aria-hidden="true"></div>
       ${plate(mediaFor(ctx, e.media), { wing: 'special', morph: key, priority: true, className: 'hall-hero__plate' })}
       <div class="hall-hero__text">
         <p class="hall-hero__meta label">${phase === 'coming' ? (e.comingLabel ?? PHASE_LABEL.coming) : PHASE_LABEL[phase]}<span aria-hidden="true"> · </span>${e.dateLabel}</p>

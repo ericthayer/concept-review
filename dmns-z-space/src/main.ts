@@ -1,4 +1,4 @@
-/** Page bootstrap: registers custom elements. Motion wiring lands in later build steps. */
+/** Deferred bootstrap: upgrades the server-rendered custom elements. Transitions live in z-space.ts. */
 import { defineElements } from './components/registry.js';
 
 defineElements();

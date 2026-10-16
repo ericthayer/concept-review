@@ -58,7 +58,7 @@ test('Space Odyssey → Prehistoric Journey ascends with stair rails', async ({ 
 test('header, minimap and ticket button never move during a transition', async ({ page }) => {
   for (const [from, to] of [
     ['/', '/halls/'],
-    ['/halls/', '/halls/space-odyssey/'],
+    ['/halls/', '/halls/konovalenko/'],
   ] as const) {
     await page.goto(from);
     await follow(page, to);

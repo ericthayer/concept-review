@@ -43,7 +43,7 @@ export function header(ctx: BuildContext, path: string): SafeHtml {
 
 export function noticeBanner(notices: readonly Notice[], today: BuildContext['today']): SafeHtml {
   const live = activeNotices(notices, today);
-  return html`<dmns-notice class="notice-banner" role="region" aria-label="Notices"${attrs({ hidden: live.length === 0 })}>
+  return html`<dmns-notice class="notice-banner" role="region" aria-label="Today's notice"${attrs({ hidden: live.length === 0 })}>
     <div class="notice-banner__live" aria-live="polite">
       ${live.map(
         (n) => html`<p class="notice-banner__item" data-notice-id="${n.id}" data-end="${n.end}">

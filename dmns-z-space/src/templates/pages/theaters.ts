@@ -32,6 +32,7 @@ export function renderTheater(ctx: BuildContext, t: Theater): string {
   <article class="exhibit" data-wing="theaters">
     <section class="hall-hero hall-hero--exhibit" id="hall-hero" aria-labelledby="theater-title">
       <div class="hall-hero__spotlight" aria-hidden="true"></div>
+      <div class="hall-hero__veil" aria-hidden="true"></div>
       ${plate(mediaFor(ctx, t.media), { wing: 'theaters', priority: true, className: 'hall-hero__plate' })}
       <div class="hall-hero__text">
         <p class="hall-hero__meta label">Theaters &amp; Dome${t.ticketNote ? html`<span aria-hidden="true"> · </span>${t.ticketNote}` : ''}</p>

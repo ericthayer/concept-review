@@ -88,6 +88,7 @@ export function renderHall(ctx: BuildContext, hall: Hall): string {
   <article class="hall${sealed ? ' hall--sealed' : ''}" data-wing="${hall.wing}">
     <section class="hall-hero" id="hall-hero" aria-labelledby="hall-title">
       <div class="hall-hero__spotlight" aria-hidden="true"></div>
+      <div class="hall-hero__veil" aria-hidden="true"></div>
       ${plate(mediaFor(ctx, hall.media), { wing: hall.wing, morph: key, priority: true, className: 'hall-hero__plate' })}
       <div class="hall-hero__text">
         <p class="hall-hero__meta label">${copy(hall.floorLabel)}<span aria-hidden="true"> · </span>Permanent hall</p>

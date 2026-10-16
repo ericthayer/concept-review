@@ -42,6 +42,12 @@ export function isCalm(): boolean {
   return matchMedia('(prefers-reduced-motion: reduce)').matches || readStillness(safeStorage());
 }
 
+/** Record an element's centre as the camera origin for the next navigation. */
+export function recordOrigin(el: Element): void {
+  const rect = el.getBoundingClientRect();
+  lastActivation = { x: Math.round(rect.left + rect.width / 2), y: Math.round(rect.top + rect.height / 2), at: performance.now() };
+}
+
 function rememberActivation(event: Event): void {
   const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
   if (!link) return;
@@ -184,8 +190,8 @@ function onPageReveal(table: RouteTable, event: PageRevealEvent): void {
 export function wireCrossDocument(table: RouteTable = readRouteTable()): void {
   if (!('onpagereveal' in window)) return;
   document.addEventListener('click', rememberActivation, { capture: true });
-  window.addEventListener('pageswap', (event) => onPageSwap(table, event));
-  window.addEventListener('pagereveal', (event) => onPageReveal(table, event));
+  window.addEventListener('pageswap', (event) => { onPageSwap(table, event); });
+  window.addEventListener('pagereveal', (event) => { onPageReveal(table, event); });
   // Back/forward cache restores the old page as it was at swap time: drop any leftover names.
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) {

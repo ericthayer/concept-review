@@ -23,7 +23,7 @@ export async function probeTransitions(page: Page): Promise<void> {
           const effect = a.effect as KeyframeEffect | null;
           const props = new Set<string>();
           for (const frame of effect?.getKeyframes() ?? []) for (const k of Object.keys(frame)) if (!['offset', 'computedOffset', 'easing', 'composite'].includes(k)) props.add(k);
-          return { pseudo: effect?.pseudoElement ?? '', name: (a as CSSAnimation).animationName ?? '', props: [...props] };
+          return { pseudo: effect?.pseudoElement ?? '', name: a instanceof CSSAnimation ? a.animationName : '', props: [...props] };
         });
         w.__reveals.push({ path: location.pathname, types: [...vt.types], animations });
         sessionStorage.setItem(key, JSON.stringify(w.__reveals));

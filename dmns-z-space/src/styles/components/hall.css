@@ -10,6 +10,7 @@
   /* Bottom padding keeps the title clear of the minimap HUD on first view. */
   padding: var(--space-8) var(--gutter) var(--space-9);
   isolation: isolate;
+  overflow-x: clip;
   container: hero / inline-size;
 }
 .hall-hero__spotlight {
