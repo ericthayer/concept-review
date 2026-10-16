@@ -69,8 +69,8 @@ A 60-second headless tour recording is attached to the pull request thread (not 
 
 Verified in Chromium 141 (headless) by `npm run check`: axe on every route, no-JS render, 360px
 fold, reading order at three sizes, contrast, budgets, links, and the motion, camera, morph and
-fallback e2e suites. **Not verified here:** Safari, Firefox, real devices, Lighthouse, and screen
-readers. See `docs/browser-support.md`.
+fallback e2e suites. Lighthouse (simulated mobile and desktop) scores 100 in every category on four key pages.
+**Not verified here:** Safari, Firefox, real devices and screen readers. See `docs/browser-support.md`.
 
 ## Docs
 
