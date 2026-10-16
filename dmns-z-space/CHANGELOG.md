@@ -21,3 +21,24 @@
   link/fragment/TODO-marker checker, Playwright + axe on every route.
 - Added a `--signal` token: DMNS gold fails 3:1 as a focus ring on the Daylight surfaces, so rings and
   "you are here" marks use a deepened gold there. The contrast script caught it.
+
+## Step 3 · Cross-document z-space
+
+- `@view-transition { navigation: auto }` on every page. `src/z-space.ts` loads with `blocking="render"`
+  (its module graph is `modulepreload`ed) so `pagereveal` is registered before the first frame.
+- `pageswap` resolves the move from building coordinates, adds it to `viewTransition.types`, writes the
+  clicked doorway's centre as `--vt-origin-x/y`, and hands both to the next page through `sessionStorage`.
+  `pagereveal` replays them, or recomputes from `navigation.activation` if storage is blocked.
+- Four choreographies plus the sealed-hall variant in `src/styles/transitions.css`. Header, minimap and
+  ticket button carry their own names with `animation: none`, so they hold still like a HUD.
+- Sign convention is a physical camera (walking right slides the room left; climbing slides it down).
+- A click during a running transition skips it. Calm mode (reduced motion or Stillness) collapses every
+  move to a 150ms crossfade, withholds morph names and drops group animations.
+- Head script flags engines without cross-document VT (`vt-fallback`), which get a 300ms lights-up on `<main>`.
+
+## Step 4 · Shared-element morphs
+
+- Directory card → hall hero, gallery card → exhibition hero, and Atrium "Now showing" plate →
+  exhibition hero. Image and title each get a `view-transition-name` only inside `pageswap`/`pagereveal`
+  and lose it when the transition finishes. `view-transition-class: hall-door` styles them all once.
+- Browser Back from a hall plays `exit` and morphs the hero back into its Directory card.

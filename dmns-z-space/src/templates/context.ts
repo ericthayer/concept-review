@@ -7,7 +7,15 @@ export interface BuildContext {
   readonly routes: RouteTable;
   readonly today: IsoDate;
   readonly packedRoutes: string;
-  readonly assets: { readonly css: string; readonly js: string };
+  readonly assets: {
+    readonly css: string;
+    /** Deferred entry: custom elements. */
+    readonly js: string;
+    /** Render-blocking entry: cross-document transition wiring. */
+    readonly vt: string;
+    /** Every module in the render-blocking graph, preloaded to flatten the import waterfall. */
+    readonly preload: readonly string[];
+  };
 }
 
 export interface PageMeta {

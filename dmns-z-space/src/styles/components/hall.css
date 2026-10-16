@@ -7,7 +7,8 @@
   gap: var(--gutter);
   min-height: min(92svh, 64rem);
   margin-inline: calc(var(--gutter) * -1);
-  padding: var(--space-8) var(--gutter) var(--space-7);
+  /* Bottom padding keeps the title clear of the minimap HUD on first view. */
+  padding: var(--space-8) var(--gutter) var(--space-9);
   isolation: isolate;
   container: hero / inline-size;
 }

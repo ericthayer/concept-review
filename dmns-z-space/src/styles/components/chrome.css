@@ -97,6 +97,7 @@
   border: 1px solid transparent;
   border-radius: var(--radius);
   color: var(--ink-muted);
+  white-space: nowrap;
   cursor: pointer;
 }
 .toggle:hover {

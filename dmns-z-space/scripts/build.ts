@@ -74,16 +74,19 @@ function buildStyles(): string {
   return file;
 }
 
-function buildScripts(): string {
-  const entry = join(COMPILED_SRC, 'main.js');
-  if (!existsSync(entry)) throw new Error('Run tsc before the build (npm run build does both).');
-  for (const file of moduleGraph(entry)) {
+function buildScripts(): { js: string; vt: string; preload: string[] } {
+  const entries = ['main.js', 'z-space.js'].map((name) => join(COMPILED_SRC, name));
+  if (!entries.every((e) => existsSync(e))) throw new Error('Run tsc before the build (npm run build does both).');
+  const shipped = new Set(entries.flatMap(moduleGraph));
+  for (const file of shipped) {
     const out = join(DIST, 'js', relative(COMPILED_SRC, file));
     const source = readFileSync(file, 'utf8');
     if (/from\s*['"]node:/.test(source)) throw new Error(`${relative(ROOT, file)} imports a Node built-in but ships to the browser`);
     write(out, source);
   }
-  return '/js/main.js';
+  const toUrl = (file: string): string => `/js/${relative(COMPILED_SRC, file).split('\\').join('/')}`;
+  const vtEntry = entries[1] ?? '';
+  return { js: '/js/main.js', vt: '/js/z-space.js', preload: moduleGraph(vtEntry).filter((f) => f !== vtEntry).map(toUrl) };
 }
 
 function headers(): string {
@@ -131,7 +134,7 @@ export function build(): { readonly pages: readonly string[] } {
     routes,
     today,
     packedRoutes: packRouteTable(routes),
-    assets: { css: buildStyles(), js: buildScripts() },
+    assets: { css: buildStyles(), ...buildScripts() },
   };
 
   const pages = new Map<string, string>([

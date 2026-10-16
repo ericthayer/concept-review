@@ -10,7 +10,7 @@ import { attrs, html, trusted, type SafeHtml } from './html.js';
  * the CSP in _headers; everything else is an external module.
  */
 export const HEAD_SCRIPT =
-  "try{var d=document.documentElement,s=localStorage,t=s.getItem('dmns:theme');if(t==='light'||t==='dark')d.dataset.theme=t;if(s.getItem('dmns:stillness')==='on')d.dataset.stillness='on'}catch(e){}";
+  "var d=document.documentElement;if(!('onpagereveal' in window))d.classList.add('vt-fallback');try{var s=localStorage,t=s.getItem('dmns:theme');if(t==='light'||t==='dark')d.dataset.theme=t;if(s.getItem('dmns:stillness')==='on')d.dataset.stillness='on'}catch(e){}";
 
 /** Prerender doorway targets on hover/focus so `enter` starts from a ready page. */
 export const SPECULATION_RULES = JSON.stringify({
@@ -43,6 +43,8 @@ export function page(ctx: BuildContext, meta: PageMeta, body: SafeHtml): string 
 <link rel="stylesheet" href="${ctx.assets.css}">
 ${meta.expect ? html`<link rel="expect" href="#${meta.expect}" blocking="render">` : ''}
 <script>${trusted(HEAD_SCRIPT)}</script>
+${ctx.assets.preload.map((href) => html`<link rel="modulepreload" href="${href}">
+`)}<script type="module" src="${ctx.assets.vt}" blocking="render"></script>
 <script type="module" src="${ctx.assets.js}"></script>
 <script type="speculationrules">${trusted(SPECULATION_RULES)}</script>
 <script type="application/json" id="dmns-routes">${trusted(ctx.packedRoutes)}</script>
@@ -55,6 +57,7 @@ ${noticeBanner(ctx.content.notices, ctx.today)}
 ${body}
 </main>
 ${minimap(ctx, position, meta.room)}
+<div class="stair-rails" aria-hidden="true"></div>
 ${footer(ctx)}
 </body>
 </html>
