@@ -17,7 +17,7 @@ export function filterBar(id: string, label: string, options: readonly FilterOpt
   const buttons = [{ value: 'all', label: 'All' }, ...options].map(
     (o) => html`<li><button type="button" data-filter-value="${o.value}" aria-pressed="${o.value === 'all' ? 'true' : 'false'}">${o.label}</button></li>`,
   );
-  return html`<dmns-filter class="filter" data-target="${id}" role="group" aria-labelledby="${id}-filter-label" hidden><p class="filter__label" id="${id}-filter-label">${label}</p><ul class="filter__options">${buttons}</ul></dmns-filter>`;
+  return html`<dmns-filter class="filter" data-target="${id}" role="group" aria-labelledby="${id}-filter-label" data-js-only><p class="filter__label" id="${id}-filter-label">${label}</p><ul class="filter__options">${buttons}</ul></dmns-filter>`;
 }
 
 export function renderSpecialIndex(ctx: PageContext): string {

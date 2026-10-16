@@ -198,6 +198,10 @@ address {
   font-weight: 700;
 }
 
+/* JS-upgraded controls keep their space from first paint (the boot script adds .js), so revealing them never shifts layout. */
+html:not(.js) [data-js-only] {
+  display: none !important;
+}
 [hidden] {
   display: none !important;
 }

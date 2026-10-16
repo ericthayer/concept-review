@@ -4,6 +4,10 @@ Each entry is one step of the build order (§15). Every step ends with `npm run 
 
 ## Step 8: Fallback ladder and polish (2026-10-16)
 
+- Mobile CLS fix: JS-upgraded controls (theme, Still Panels, Look closer, Replay, filters) keep
+  their space from first paint via `html.js` instead of being unhidden later. Lighthouse mobile
+  CLS went from 0.29–0.32 to 0.02–0.04.
+
 - `fallbacks.css`: opacity-only arrival when nothing else is supported, reduced-transparency
   keyframes, forced-colors edges and states.
 - Pressed filter pills keep a visible edge on the black page.

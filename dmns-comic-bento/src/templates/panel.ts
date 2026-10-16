@@ -69,7 +69,7 @@ function beatStrip(ctx: PageContext, beats: NonNullable<PanelSpec['beats']>): Sa
   const items = beats.items.map(
     (b, i) => html`<div class="beat" data-beat="${i + 1}">${artSvg(ctx, b.art)}<span class="beat__label">${b.label}</span></div>`,
   );
-  return html`<dmns-beat-strip class="panel__art panel__art--beats" data-beats="${beats.items.length}"><p class="vh">${beats.sentence}</p><div class="beats" aria-hidden="true">${items}</div>${sketchStamp()}<button type="button" class="beat-replay" hidden>Replay</button></dmns-beat-strip>`;
+  return html`<dmns-beat-strip class="panel__art panel__art--beats" data-beats="${beats.items.length}"><p class="vh">${beats.sentence}</p><div class="beats" aria-hidden="true">${items}</div>${sketchStamp()}<button type="button" class="beat-replay" data-js-only>Replay</button></dmns-beat-strip>`;
 }
 
 function artBlock(ctx: PageContext, spec: PanelSpec, flags: PanelRenderFlags): SafeHtml {
@@ -104,7 +104,7 @@ export function renderPanel(ctx: PageContext, spec: PanelSpec, flags: PanelRende
     .filter(Boolean)
     .join(' ');
   const lean = spec.lean
-    ? html`<button type="button" class="lean-btn" aria-expanded="false" aria-controls="${spec.id}" hidden>Look closer<span class="vh"> at ${spec.title}</span></button>`
+    ? html`<button type="button" class="lean-btn" aria-expanded="false" aria-controls="${spec.id}" data-js-only>Look closer<span class="vh"> at ${spec.title}</span></button>`
     : '';
   const sub = spec.sub === undefined ? '' : captionSub(spec.sub, { quote: spec.subIsQuote ?? false });
   return html`<dmns-panel ${raw(attrs)}><article class="panel" aria-labelledby="${titleId}">${artBlock(ctx, spec, flags)}<div class="panel__copy">${spec.kicker ? kicker(spec.kicker) : ''}${heading}${sub}${spec.body ?? ''}</div><div class="panel__actions">${spec.link ? linkHtml(spec.link, spec.cta ?? false) : ''}${lean}</div></article></dmns-panel>`;

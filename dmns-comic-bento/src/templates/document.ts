@@ -47,8 +47,8 @@ function masthead(ctx: PageContext): SafeHtml {
 <a class="wordmark" href="/"${ctx.position.path === '/' ? raw(' aria-current="page"') : ''}><span class="wordmark__short">${site.shortName}</span><span class="wordmark__long">${site.name}</span><span class="wordmark__concept">Concept</span></a>
 <div class="masthead__tools">
 ${externalLink(site.outbound.tickets, 'Buy Tickets', 'btn-tickets')}
-<button type="button" class="tool-btn" data-action="theme" aria-pressed="false" hidden>Dark theme</button>
-<button type="button" class="tool-btn" data-action="still" aria-pressed="false" hidden>Still Panels</button>
+<button type="button" class="tool-btn" data-action="theme" aria-pressed="false" data-js-only>Dark theme</button>
+<button type="button" class="tool-btn" data-action="still" aria-pressed="false" data-js-only>Still Panels</button>
 </div>
 </div>
 <nav class="masthead__nav" aria-label="Primary"><ul>${items}</ul></nav>
