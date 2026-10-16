@@ -78,7 +78,6 @@ export function renderExhibition(ctx: PageContext, e: Exhibition): string {
     title: e.name,
     description: `${e.name} at the Denver Museum of Nature & Science. ${e.dateLabel}.`,
     main,
-    expectSplash: true,
     documentary: doc,
   });
 }
@@ -121,5 +120,5 @@ export function renderTheater(ctx: PageContext, t: Theater): string {
     },
   ];
   const main = html`${renderSplash(ctx, { title: t.name, kicker: 'Now Screening', sub: t.description, mood: 'lively', art: t.art, pose: 'floating' })}${join(spreads.map((s, i) => renderSpread(ctx, s, i + 1)))}`;
-  return renderDocument(ctx, { title: t.name, description: `${t.name} at the Denver Museum of Nature & Science.`, main, expectSplash: true });
+  return renderDocument(ctx, { title: t.name, description: `${t.name} at the Denver Museum of Nature & Science.`, main });
 }

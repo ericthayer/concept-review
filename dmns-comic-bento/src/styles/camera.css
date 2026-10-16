@@ -1,1 +1,143 @@
-/* camera.css: filled in by later build steps (see CHANGELOG). */
+/* Step 5: the cross-document camera. Every navigation inside the book is a
+   camera move; the move is a view-transition type added on both sides by the
+   inline camera script (src/runtime/camera.ts):
+     zoom-in / zoom-out   panel ⇄ splash, caption ⇄ h1   640ms / 520ms
+     turn-next / turn-prev  a 6° page hinge              560ms
+     new-issue            the next issue lands on the stack 600ms
+     calm                 reduced motion or Still Panels: 150ms crossfade
+   Without JS the browser's default crossfade runs. */
+
+@view-transition {
+  navigation: auto;
+}
+
+/* Wayfinding never moves: masthead and info strip (named in their own
+   stylesheets) swap in place. */
+::view-transition-group(masthead),
+::view-transition-group(info-strip),
+::view-transition-new(masthead),
+::view-transition-new(info-strip) {
+  animation: none;
+}
+::view-transition-old(masthead),
+::view-transition-old(info-strip) {
+  display: none;
+}
+
+/* Moves slide or scale whole pages: normal blending, not the crossfade's plus-lighter. */
+html:active-view-transition-type(zoom-in, zoom-out, turn-next, turn-prev, new-issue)::view-transition-old(root),
+html:active-view-transition-type(zoom-in, zoom-out, turn-next, turn-prev, new-issue)::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+/* Zoom in: the clicked panel grows into the splash; the page behind pushes past the camera. */
+html:active-view-transition-type(zoom-in)::view-transition-old(root) {
+  animation: cam-push-past 640ms var(--ease-camera) both;
+}
+html:active-view-transition-type(zoom-in)::view-transition-new(root) {
+  animation: cam-fade-in 380ms var(--ease-camera) 260ms both;
+}
+html:active-view-transition-type(zoom-in)::view-transition-group(*) {
+  animation-duration: 640ms;
+  animation-timing-function: var(--ease-camera);
+}
+html:active-view-transition-type(zoom-in)::view-transition-image-pair(hero-panel) {
+  animation: cam-square 640ms var(--ease-camera) both;
+}
+
+/* Zoom out: the splash settles back into its panel; the page arrives from past the camera. */
+html:active-view-transition-type(zoom-out)::view-transition-old(root) {
+  animation: cam-fade-out 260ms var(--ease-camera) both;
+}
+html:active-view-transition-type(zoom-out)::view-transition-new(root) {
+  animation: cam-pull-back 520ms var(--ease-camera) both;
+}
+html:active-view-transition-type(zoom-out)::view-transition-group(*) {
+  animation-duration: 520ms;
+  animation-timing-function: var(--ease-camera);
+}
+html:active-view-transition-type(zoom-out)::view-transition-image-pair(hero-panel) {
+  animation: cam-round 520ms var(--ease-camera) both;
+}
+
+/* Page turns hinge on the spine. */
+html:active-view-transition-type(turn-next, turn-prev)::view-transition-image-pair(root) {
+  perspective: 1600px;
+}
+html:active-view-transition-type(turn-next)::view-transition-old(root) {
+  transform-origin: left center;
+  animation: cam-turn-away-left 560ms var(--ease-camera) both;
+}
+html:active-view-transition-type(turn-next)::view-transition-new(root) {
+  transform-origin: right center;
+  animation: cam-turn-in-right 560ms var(--ease-camera) both;
+}
+html:active-view-transition-type(turn-prev)::view-transition-old(root) {
+  transform-origin: right center;
+  animation: cam-turn-away-right 560ms var(--ease-camera) both;
+}
+html:active-view-transition-type(turn-prev)::view-transition-new(root) {
+  transform-origin: left center;
+  animation: cam-turn-in-left 560ms var(--ease-camera) both;
+}
+
+/* New issue: the next issue is dealt onto the stack. */
+html:active-view-transition-type(new-issue)::view-transition-old(root) {
+  animation: cam-sink 600ms var(--ease-camera) both;
+}
+html:active-view-transition-type(new-issue)::view-transition-new(root) {
+  animation: cam-deal 600ms var(--ease-camera) both;
+}
+
+/* Calm: reduced motion or Still Panels. A short crossfade, nothing moves. */
+html:active-view-transition-type(calm)::view-transition-group(*),
+html:active-view-transition-type(calm)::view-transition-old(*),
+html:active-view-transition-type(calm)::view-transition-new(*) {
+  animation-duration: 150ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 150ms !important;
+  }
+}
+
+@keyframes cam-push-past {
+  to { scale: 1.08; opacity: 0; }
+}
+@keyframes cam-pull-back {
+  from { scale: 1.08; opacity: 0; }
+}
+@keyframes cam-fade-in {
+  from { opacity: 0; }
+}
+@keyframes cam-fade-out {
+  to { opacity: 0; }
+}
+@keyframes cam-square {
+  from { clip-path: inset(0 round var(--panel-radius)); }
+  to { clip-path: inset(0 round 0); }
+}
+@keyframes cam-round {
+  from { clip-path: inset(0 round 0); }
+  to { clip-path: inset(0 round var(--panel-radius)); }
+}
+@keyframes cam-turn-away-left {
+  to { rotate: y -6deg; translate: -30% 0; opacity: 0; }
+}
+@keyframes cam-turn-in-right {
+  from { rotate: y 6deg; translate: 30% 0; opacity: 0; }
+}
+@keyframes cam-turn-away-right {
+  to { rotate: y 6deg; translate: 30% 0; opacity: 0; }
+}
+@keyframes cam-turn-in-left {
+  from { rotate: y -6deg; translate: -30% 0; opacity: 0; }
+}
+@keyframes cam-sink {
+  to { scale: 0.94; opacity: 0.35; }
+}
+@keyframes cam-deal {
+  from { translate: 0 100%; }
+}

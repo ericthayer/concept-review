@@ -4,6 +4,7 @@
  */
 import { sprite } from '../../scripts/build-sprites.ts';
 import { encodeBook, ISSUE_INDEX_PATH, ISSUE_LABEL, pageCounter, type IssueId } from '../lib/book.ts';
+import { cameraScript } from '../runtime/camera.ts';
 import type { PageContext } from './context.ts';
 import { html, isExternal, raw, type SafeHtml } from './html.ts';
 
@@ -14,12 +15,13 @@ export interface DocumentSpec {
   readonly description: string;
   readonly main: SafeHtml;
   /** Detail pages block render until the splash is parsed. */
-  readonly expectSplash?: boolean;
   readonly documentary?: boolean;
 }
 
 /** Runs before first paint: theme and Still Panels, so nothing flashes. */
-const BOOT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('dmns:theme');if(t==='light'||t==='dark')d.dataset.theme=t;if(localStorage.getItem('dmns:still-panels')==='1')d.dataset.still='';}catch(e){}d.classList.add('js');})();`;
+const CAMERA = cameraScript();
+
+const BOOT = `(function(){var d=document.documentElement;try{var t=localStorage.getItem('dmns:theme');if(t==='light'||t==='dark')d.dataset.theme=t;if(localStorage.getItem('dmns:still-panels')==='1')d.dataset.still='';}catch(e){}var r=d.hasAttribute('data-still')||matchMedia('(prefers-reduced-motion: reduce)').matches;var v='startViewTransition' in document||(window.CSS&&CSS.supports('animation-timeline: view()'));d.dataset.motion=r?'reduced':v?'full':'none';d.classList.add('js');})();`;
 
 const SPECULATION = JSON.stringify({
   prerender: [{ where: { and: [{ href_matches: '/*' }, { selector_matches: '.panel__link' }] }, eagerness: 'moderate' }],
@@ -105,7 +107,7 @@ export function renderDocument(ctx: PageContext, spec: DocumentSpec): string {
   const counter = pageCounter(ctx.position, ctx.route.siblings);
   const bookJson = JSON.stringify(encodeBook(ctx.routes.map((r) => r.position)));
   // main is rendered first so the sprite knows every figure the page used.
-  const main = html`<main id="main" tabindex="-1"><dmns-page data-issue="${ctx.position.issue}" data-depth="${ctx.position.depth}"${spec.documentary ? raw(' data-documentary') : ''}><p class="page-counter">${counter}</p>${spec.main}</dmns-page></main>`;
+  const main = html`<main id="main" tabindex="-1"><dmns-page data-issue="${ctx.position.issue}" data-depth="${ctx.position.depth}"${spec.documentary ? raw(' data-documentary') : ''}><p class="page-counter">${counter}</p>${spec.main}</dmns-page><span id="main-end" hidden></span></main>`;
   const body = html`${raw(sprite(ctx.art))}${masthead(ctx)}${infoStrip(ctx)}${main}${footer(ctx)}<p class="vh" id="announcer" aria-live="polite"></p>`;
   const title = `${spec.title} | ${ctx.content.site.name} (concept)`;
   return `<!doctype html>
@@ -120,8 +122,10 @@ export function renderDocument(ctx: PageContext, spec: DocumentSpec): string {
 <link rel="preload" href="/assets/fonts/archivo-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-${spec.expectSplash ? '<link rel="expect" href="#splash" blocking="render">\n' : ''}<script>${BOOT}</script>
+<link rel="expect" href="#main-end" blocking="render">
+<script>${BOOT}</script>
 <script type="application/json" id="book-map">${bookJson}</script>
+<script>${CAMERA}</script>
 <script type="module" src="/assets/js/main.js"></script>
 <script type="speculationrules">${SPECULATION}</script>
 </head>

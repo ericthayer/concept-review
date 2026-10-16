@@ -83,10 +83,11 @@
   }
 }
 
-/* First spread: a short time-based entrance instead of scroll ink (it is already on screen). */
+/* First spread: a short time-based entrance instead of scroll ink (it is already on screen).
+   Skipped when the page arrived through a camera move, which already animates it. */
 @media (prefers-reduced-motion: no-preference) {
-  :root[data-motion='full'] dmns-spread[data-ink='enter'] dmns-panel,
-  :root[data-motion='full'] #splash .splash__panel {
+  :root[data-motion='full']:not([data-camera]) dmns-spread[data-ink='enter'] dmns-panel,
+  :root[data-motion='full']:not([data-camera]) #splash .splash__panel {
     animation: ink-drop 300ms var(--ease-camera) both;
     animation-delay: calc(var(--i, 0) * var(--stagger));
   }

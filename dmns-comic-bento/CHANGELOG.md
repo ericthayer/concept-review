@@ -2,6 +2,15 @@
 
 Each entry is one step of the build order (§15). Every step ends with `npm run check` green.
 
+## Step 5: Cross-document camera (2026-10-16)
+
+- Every in-book navigation is a camera move: zoom in and out (panel ⇄ splash, caption ⇄ h1),
+  page turns on a 6° hinge, and new-issue deals; reduced motion and Still Panels get a 150ms crossfade.
+- Move resolution runs in an inline classic script compiled from `src/runtime/camera.ts`,
+  unit-tested against `resolveCameraMove` for every route pair.
+- Motion level is now set before first paint by the boot script.
+- `tests/e2e/camera.spec.ts` drives each move and the calm fallback in Chromium.
+
 ## Step 4: Boil and beats (2026-10-16)
 
 - Line art boils in three held frames (360ms cycle, `steps()`), only on screen, at most six

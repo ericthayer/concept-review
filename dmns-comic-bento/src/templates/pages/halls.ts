@@ -116,7 +116,6 @@ export function renderHall(ctx: PageContext, hall: Hall): string {
     title: hall.name,
     description: `${hall.name} at the Denver Museum of Nature & Science. ${hall.description}`,
     main,
-    expectSplash: true,
     documentary: doc,
   });
 }
