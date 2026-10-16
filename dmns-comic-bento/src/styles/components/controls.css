@@ -1,0 +1,78 @@
+/* Buttons that upgrade with JS: Look closer, Replay, floor tabs, filters. */
+.lean-btn,
+.beat-replay {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.25rem 0.875rem;
+  background: var(--paper-2);
+  color: var(--ink-text);
+  border: 2px solid var(--ink-text);
+  border-radius: 999px;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  cursor: pointer;
+}
+.lean-btn[aria-expanded='true'] {
+  background: var(--ink-0);
+  color: var(--paper-text);
+  border-color: var(--paper-text);
+}
+
+.floor-tabs ul,
+.filter__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.floor-tabs a,
+.floor-tabs [role='tab'],
+.filter button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.25rem 1rem;
+  background: var(--paper-2);
+  color: var(--ink-text);
+  border: 2px solid var(--ink-text);
+  border-radius: 999px;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  text-decoration: none;
+  cursor: pointer;
+}
+.floor-tabs [aria-selected='true'],
+.filter button[aria-pressed='true'] {
+  background: var(--ink-0);
+  color: var(--paper-text);
+}
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 var(--gutter) var(--gutter);
+  color: var(--paper-text);
+}
+.filter[hidden] {
+  display: none;
+}
+.filter__label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: 0.8125rem;
+}
+dmns-panel[hidden] {
+  display: none;
+}

@@ -1,0 +1,131 @@
+/* Field Notes tokens. The only file allowed to hold raw color values. */
+@font-face {
+  font-family: 'Archivo';
+  src: url('/assets/fonts/archivo-variable-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 62% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Archivo Fallback';
+  src: local('Arial Narrow'), local('Arial'), local('Liberation Sans');
+  size-adjust: 98%;
+  ascent-override: 90%;
+  descent-override: 22%;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/assets/fonts/jost-500-latin.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost Fallback';
+  src: local('Arial'), local('Liberation Sans');
+  size-adjust: 97%;
+  ascent-override: 106%;
+  descent-override: 37%;
+}
+
+@property --ink {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  color-scheme: light;
+  --ink-0: #0d0d0d;
+  --paper: #ecede4;
+  --paper-2: #f6f6f0;
+  --ink-text: #0d0d0d;
+  --paper-text: #ecede4;
+  --ticket: #f0ad00;
+  --pop-green: #8fc229;
+  --pop-green-art: #7cf03a;
+  --pop-blue: #00a3f2;
+  --pop-orange: #f4911e;
+  --pop-magenta: #e83ad6;
+  --pop-red: #b31f17;
+  --doc-sepia: #c9b99a;
+  /* Added: unfinished-sketch linework for "To Be Continued" panels. */
+  --pencil: #3f6fc4;
+  /* Notice edges and TODO outlines: pop-red, lifted in dark mode for 3:1. */
+  --notice-edge: #b31f17;
+
+  /* Art roles (dark mode and contrast modes re-point these) */
+  --art-line: var(--ink-0);
+  --art-paper: var(--paper-2);
+  --art-ink: var(--ink-0);
+  --art-green: var(--pop-green-art);
+  --art-blue: var(--pop-blue);
+  --art-orange: var(--pop-orange);
+  --art-magenta: var(--pop-magenta);
+  --art-red: var(--pop-red);
+  --art-sepia: var(--doc-sepia);
+  --art-halftone: var(--ink-0);
+  --line: 3px;
+  --line-fine: 1.5px;
+  --register-x: 3px;
+  --register-y: 2px;
+
+  /* Layout */
+  --panel-radius: 14px;
+  --row: clamp(104px, 9vw, 160px);
+  --measure: 66ch;
+  --chrome-pad: clamp(12px, 2vw, 24px);
+
+  /* Type */
+  --font-display: 'Archivo', 'Archivo Fallback', system-ui, sans-serif;
+  --font-label: 'Jost', 'Jost Fallback', system-ui, sans-serif;
+  --tracking-label: 0.08em;
+
+  /* Motion */
+  --ease-camera: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --boil-duration: 360ms;
+  --boil-duration-hover: 240ms;
+  --frame-12fps: 83ms;
+  --stagger: 40ms;
+  --word-gap: 60ms;
+
+  /* Focus */
+  --focus-ring: 3px;
+  --focus-offset: 2px;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #1a1a17;
+  --paper-2: #242420;
+  --ink-text: #ecede4;
+  --art-line: #ecede4;
+  --art-paper: #2e2e29;
+  --art-ink: #ecede4;
+  --art-halftone: #ecede4;
+  --notice-edge: #ff6b5e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --paper: #1a1a17;
+    --paper-2: #242420;
+    --ink-text: #ecede4;
+    --art-line: #ecede4;
+    --art-paper: #2e2e29;
+    --art-ink: #ecede4;
+    --art-halftone: #ecede4;
+    --notice-edge: #ff6b5e;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --line: 4px;
+    --line-fine: 2.5px;
+    --register-x: 0px;
+    --register-y: 0px;
+    --art-halftone: transparent;
+  }
+}

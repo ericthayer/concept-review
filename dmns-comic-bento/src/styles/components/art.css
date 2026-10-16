@@ -1,0 +1,140 @@
+/* Line art. Symbols live in the page sprite; these rules style their clones.
+   Values reach the clones through inherited custom properties. */
+.art {
+  overflow: visible;
+}
+.ln {
+  fill: none;
+  stroke: var(--art-line);
+  stroke-width: var(--line);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: var(--ink);
+}
+.ln--paper {
+  stroke: var(--art-paper);
+  stroke-width: var(--line-fine);
+}
+.ln--pencil {
+  stroke: var(--pencil);
+  stroke-width: var(--line-fine);
+}
+.ln--fine {
+  stroke-width: var(--line-fine);
+}
+.fl { stroke: none; }
+.fl--ink { fill: var(--art-ink); }
+.fl--paper { fill: var(--art-paper); }
+.fl--green { fill: var(--art-green); }
+.fl--blue { fill: var(--art-blue); }
+.fl--orange { fill: var(--art-orange); }
+.fl--magenta { fill: var(--art-magenta); }
+.fl--red { fill: var(--art-red); }
+.fl--sepia { fill: var(--art-sepia); }
+.fl--halftone { fill: url(#halftone); }
+.fl--pencil-fill { fill: url(#hatch); }
+.ht-dot { fill: var(--art-halftone); }
+.hatch {
+  stroke: var(--pencil);
+  stroke-width: 1;
+}
+
+/* Off-register fill: the misprint. */
+.art__fill {
+  translate: var(--register-x) var(--register-y);
+}
+
+/* Boil frames: only the first is visible at rest. boil.css cycles them. */
+.beat-frame + .beat-frame {
+  visibility: hidden;
+}
+
+dmns-specimen {
+  position: absolute;
+  z-index: 1;
+  width: clamp(64px, 30%, 160px);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+dmns-specimen > .art {
+  width: 100%;
+  height: 100%;
+}
+dmns-specimen[data-spot='br'] { right: 3%; bottom: 3%; }
+dmns-specimen[data-spot='bl'] { left: 3%; bottom: 3%; }
+dmns-specimen[data-spot='tr'] { right: 4%; top: 6%; }
+dmns-specimen[data-spot='center'] { left: 50%; top: 50%; translate: -50% -50%; }
+
+/* Beat strips: beats share one cell; at rest the final beat shows. */
+dmns-beat-strip {
+  display: grid;
+  position: relative;
+}
+.beats {
+  display: grid;
+  width: 100%;
+  height: 100%;
+}
+.beat {
+  grid-area: 1 / 1;
+  display: grid;
+  visibility: hidden;
+}
+.beat:last-child,
+dmns-beat-strip[data-current] .beat[data-active] {
+  visibility: visible;
+}
+dmns-beat-strip[data-current] .beat:last-child:not([data-active]) {
+  visibility: hidden;
+}
+.beat > .art {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+}
+.beat__label {
+  grid-area: 1 / 1;
+  align-self: start;
+  justify-self: start;
+  margin: 0.75rem;
+  padding: 0.1em 0.25em 0.02em;
+  background: var(--ink-0);
+  color: var(--paper-text);
+  font-stretch: 62%;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 0.95;
+  font-size: clamp(1.25rem, 7cqi, 3rem);
+}
+.beat-replay {
+  position: absolute;
+  bottom: 10px;
+  inset-inline-start: 10px;
+  z-index: 2;
+}
+
+/* Stair spread: Specimen climbs alongside the halls. */
+.stair-climber {
+  position: absolute;
+  right: calc(var(--gutter) * 2);
+  bottom: calc(var(--gutter) * 2);
+  width: clamp(72px, 12cqi, 140px);
+  aspect-ratio: 1;
+  pointer-events: none;
+}
+.stair-climber dmns-specimen {
+  width: 100%;
+  inset: 0;
+  translate: none;
+}
+
+/* Under construction: pencil-blue sketch. */
+[data-mood='closed'] .art {
+  --art-line: var(--pencil);
+}
+[data-span='xl'] dmns-specimen,
+.splash__art dmns-specimen {
+  width: clamp(80px, 24%, 220px);
+}

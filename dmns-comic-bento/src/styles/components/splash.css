@@ -1,0 +1,70 @@
+/* Splash: one panel filling the viewport; the hero of index and detail pages. */
+.splash {
+  --gutter: clamp(8px, 1.2cqi, 16px);
+  padding: var(--gutter);
+}
+.splash__panel {
+  position: relative;
+  container: panel / inline-size;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: end;
+  min-height: min(72svh, 760px);
+  background: var(--paper);
+  color: var(--ink-text);
+  border: 2px solid var(--paper-text);
+  border-radius: var(--panel-radius);
+  overflow: hidden;
+}
+.splash--issue .splash__panel {
+  min-height: auto;
+}
+.splash__art {
+  position: relative;
+  align-self: stretch;
+  min-height: 14rem;
+}
+.splash__art > .art {
+  width: 100%;
+  height: 100%;
+}
+.splash__copy {
+  display: grid;
+  gap: 0.75rem;
+  align-content: end;
+  padding: clamp(16px, 5cqi, 56px);
+}
+.splash__title {
+  font-size: clamp(2.25rem, 9cqi, 7rem);
+}
+.splash .caption--sub {
+  font-size: clamp(1.125rem, 3.5cqi, 2rem);
+  max-width: 40ch;
+}
+@container page (min-width: 1000px) {
+  .splash__panel:has(.splash__art) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  }
+  .splash__copy {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+.tbc-banner {
+  position: absolute;
+  right: clamp(12px, 4cqi, 40px);
+  bottom: clamp(12px, 4cqi, 40px);
+  padding: 0.25em 0.6em;
+  background: var(--paper-2);
+  color: var(--ink-text);
+  border: var(--line) solid var(--ink-text);
+  font-stretch: 62%;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  font-size: clamp(1.25rem, 5cqi, 2.5rem);
+  rotate: -3deg;
+}
+[data-mood='documentary'].splash .splash__panel {
+  border-color: var(--doc-sepia);
+}

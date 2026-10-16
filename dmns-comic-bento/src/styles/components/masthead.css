@@ -1,0 +1,114 @@
+/* Masthead: plain wayfinding chrome. Never animates during page transitions. */
+.masthead {
+  position: relative;
+  background: var(--ink-0);
+  color: var(--paper-text);
+  font-family: var(--font-label);
+  font-weight: 500;
+  view-transition-name: masthead;
+}
+.masthead__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.625rem var(--chrome-pad) 0.25rem;
+}
+.wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.625rem;
+  text-decoration: none;
+  min-height: 24px;
+}
+.wordmark__short {
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+}
+.wordmark__long {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+.wordmark__concept {
+  padding: 0.05rem 0.4rem;
+  border: 1px solid currentColor;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+.masthead__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+.btn-tickets {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  background: var(--ticket);
+  color: var(--ink-0);
+  border-radius: 999px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+.btn-tickets:hover {
+  text-decoration: underline;
+}
+.tool-btn {
+  min-height: 32px;
+  padding: 0.25rem 0.625rem;
+  background: transparent;
+  border: 1px solid var(--paper-text);
+  border-radius: 999px;
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tool-btn[aria-pressed='true'] {
+  background: var(--paper-text);
+  color: var(--ink-0);
+}
+.masthead__nav {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.masthead__nav ul {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.25rem var(--chrome-pad) 0.5rem;
+  width: max-content;
+}
+.masthead__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.25rem 0.625rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-size: 0.875rem;
+  border-bottom: 3px solid transparent;
+}
+.masthead__nav a:hover {
+  border-bottom-color: var(--paper-text);
+}
+.masthead__nav a[aria-current] {
+  border-bottom-color: var(--ticket);
+}
+@media (max-width: 420px) {
+  .wordmark__long {
+    display: none;
+  }
+}

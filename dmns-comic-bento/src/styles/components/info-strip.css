@@ -1,0 +1,34 @@
+/* Info strip: hours, open state, urgent notice. Plain Jost, raised paper. */
+dmns-info-strip,
+.info-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  padding: 0.5rem var(--chrome-pad);
+  background: var(--paper-2);
+  color: var(--ink-text);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+  view-transition-name: info-strip;
+}
+.info-strip__label {
+  display: inline-block;
+  margin-inline-end: 0.375rem;
+  padding: 0.05rem 0.375rem;
+  background: var(--ink-0);
+  color: var(--paper-text);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+.info-strip__notice .info-strip__label {
+  background: var(--pop-red);
+}
+.info-strip__state:not(:empty) {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
