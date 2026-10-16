@@ -109,3 +109,9 @@ holds to 300ms, new pose appears at 260ms, `steps(1)`), so it reads as drawn, no
 | Documentary page (Egyptian Mummies, anthropology, living cultures) on either side of the reveal | Never named; no Specimen is drawn there at all |
 | Reduced motion or Still Panels | Never named; the calm crossfade |
 | Same-document morphs | The Specimen stays in its panel |
+
+## Step 8: Fallback ladder (`src/styles/fallbacks.css`)
+
+See the ladder table in `docs/browser-support.md`. Every rung keeps all content and wayfinding;
+only motion is removed. Budgets after step 8: JS 6.6 KB gzip external plus a 1.6 KB (gzip) inline camera
+script per page, CSS about 10 KB gzip.

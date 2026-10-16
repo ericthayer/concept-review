@@ -52,6 +52,26 @@ Examples (unit-tested in `tests/unit/content.test.ts`): Cover → Halls and Hall
 zoom in; Prehistoric Journey → Halls zooms out; Prehistoric Journey → Egyptian Mummies turns the page;
 Halls → Theaters is a new issue. Choreography lives in `src/styles/camera.css`; see `docs/motion-spec.md`.
 
+## Motion, in one table
+
+| Layer | What | Where |
+|---|---|---|
+| Ink-in | gutters rule, panels drop, strokes draw, captions slap, on scroll | `src/styles/ink.css` |
+| Boil and beats | held-frame line boil (max six panels), beat strips play once | `src/styles/boil.css`, `src/runtime/boil.ts` |
+| Camera | zoom, page turn and new-issue moves between pages | `src/styles/camera.css`, `src/runtime/camera.ts` |
+| Morphs | Look closer, floor tabs, filters | `src/styles/morph.css`, `src/runtime/transition.ts` |
+| Traveler | Specimen hops between pages; never on documentary pages | `src/styles/camera.css` |
+| Still Panels | masthead toggle, persists; same result as reduced motion | `src/runtime/motion-state.ts` |
+
+A 60-second headless tour recording is attached to the pull request thread (not committed).
+
+## Verification status
+
+Verified in Chromium 141 (headless) by `npm run check`: axe on every route, no-JS render, 360px
+fold, reading order at three sizes, contrast, budgets, links, and the motion, camera, morph and
+fallback e2e suites. **Not verified here:** Safari, Firefox, real devices, Lighthouse, and screen
+readers. See `docs/browser-support.md`.
+
 ## Docs
 
 - [Comic grammar](docs/comic-grammar.md): the vocabulary and the respect boundaries

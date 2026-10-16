@@ -2,6 +2,14 @@
 
 Each entry is one step of the build order (§15). Every step ends with `npm run check` green.
 
+## Step 8: Fallback ladder and polish (2026-10-16)
+
+- `fallbacks.css`: opacity-only arrival when nothing else is supported, reduced-transparency
+  keyframes, forced-colors edges and states.
+- Pressed filter pills keep a visible edge on the black page.
+- `tests/e2e/fallbacks.spec.ts`: morphs without `startViewTransition`; forced colors.
+- Docs: fallback ladder, verification gaps, README motion table; 60s tour recorded headless.
+
 ## Step 7: Specimen traveler (2026-10-16)
 
 - The on-screen Specimen hops between pages on camera moves, changing pose on landing.

@@ -1,1 +1,53 @@
-/* fallbacks.css: filled in by later build steps (see CHANGELOG). */
+/* Step 8: the fallback ladder's last rungs. Each rule only adds a floor; none
+   of it changes the full-motion design. See docs/browser-support.md. */
+
+/* No view transitions and no scroll timelines (data-motion="none"): a short,
+   opacity-only arrival for the splash so a page change still reads as a turn. */
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-motion='none']:not([data-still]) #splash .splash__panel {
+    animation: fallback-arrive 240ms var(--ease-camera) both;
+  }
+}
+@keyframes fallback-arrive {
+  from { opacity: 0; }
+}
+
+/* Reduced transparency: moves keep their geometry but never leave a page or
+   panel half see-through. Same keyframe names, redefined only when this matches. */
+@media (prefers-reduced-transparency: reduce) {
+  @keyframes ink-drop {
+    from { scale: 0.96; translate: 0 12px; }
+    to { scale: 1; translate: 0 0; }
+  }
+  @keyframes cam-sink {
+    to { scale: 0.94; }
+  }
+}
+
+/* Forced colors (Windows High Contrast): panels lose their paper fill, so
+   draw their edges; keep the TODO and Sketch tags visibly boxed. */
+@media (forced-colors: active) {
+  dmns-panel .panel,
+  #splash .splash__panel {
+    border: 2px solid CanvasText;
+  }
+  .todo__tag,
+  .sketch-stamp,
+  .tbc-banner {
+    border: 1px solid CanvasText;
+  }
+  /* Transparent borders turn visible in forced colors: only the current page keeps its rule. */
+  .masthead__nav a {
+    border-bottom-color: Canvas;
+  }
+  .masthead__nav a[aria-current] {
+    border-bottom-color: CanvasText;
+  }
+  .lean-btn[aria-expanded='true'],
+  .floor-tabs [aria-selected='true'],
+  .filter button[aria-pressed='true'] {
+    background: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+}

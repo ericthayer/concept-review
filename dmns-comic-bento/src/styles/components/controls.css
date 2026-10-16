@@ -55,6 +55,10 @@
   background: var(--ink-0);
   color: var(--paper-text);
 }
+/* Filters sit on the black page: the pressed pill keeps a paper edge so its shape stays visible. */
+.filter button[aria-pressed='true'] {
+  border-color: var(--paper-text);
+}
 .filter {
   display: flex;
   flex-wrap: wrap;
