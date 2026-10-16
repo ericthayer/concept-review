@@ -94,14 +94,32 @@ export function installCamera(): void {
 
   const isZoom = (move: string): boolean => move === 'zoom-in' || move === 'zoom-out';
 
+  /** Step 7: the on-screen Specimen hops between pages. Never on documentary pages. */
+  const nameSpecimen = (): void => {
+    if (document.querySelector('[data-documentary]')) return;
+    for (const el of document.querySelectorAll('dmns-specimen')) {
+      const before = named.length;
+      name(el, 'specimen');
+      if (named.length > before) return;
+    }
+  };
+
+  /** Names on both sides of a move (hero pair, traveler). */
+  const nameFor = (kind: string, outgoing: boolean, otherPath: string): void => {
+    if (kind === 'calm') return;
+    if (isZoom(kind)) nameHero(kind, outgoing, otherPath);
+    nameSpecimen();
+  };
+
   addEventListener('pageswap', (event: PageSwapEvent) => {
     const vt = event.viewTransition;
     const dest = pathOf(event.activation?.entry?.url);
     if (!vt || !dest) return;
     const move = moveFor(pathOf(location.href), dest);
     if (move === 'none') return;
-    vt.types.add(calm() ? 'calm' : move);
-    if (!calm() && isZoom(move)) nameHero(move, true, dest);
+    const kind = calm() ? 'calm' : move;
+    vt.types.add(kind);
+    nameFor(kind, true, dest);
   });
 
   addEventListener('pageshow', clear);
@@ -116,7 +134,8 @@ export function installCamera(): void {
     const kind = calm() ? 'calm' : move;
     vt.types.add(kind);
     root.dataset['camera'] = kind;
-    if (kind !== 'calm' && isZoom(move)) nameHero(move, false, from);
+    nameFor(kind, false, from);
+    root.dataset['cameraNames'] = named.map((el) => el.style.viewTransitionName).join(' ');
     active = vt;
     vt.finished.finally(() => {
       clear();

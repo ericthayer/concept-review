@@ -23,6 +23,16 @@ test.describe('full motion', () => {
     expect(await follow(page, 'nav[aria-label="Primary"] a[href="/theaters/"]', '/theaters/')).toBe('new-issue');
   });
 
+  test('the Specimen travels between lively pages, never onto documentary ones', async ({ page }) => {
+    await page.goto('/halls/#floor-3');
+    await follow(page, 'a.panel__link[href="/halls/prehistoric-journey/"]', '/halls/prehistoric-journey/');
+    expect(await page.locator('html').getAttribute('data-camera-names')).toContain('specimen');
+    await page.goto('/halls/#floor-3');
+    await follow(page, 'a.panel__link[href="/halls/egyptian-mummies/"]', '/halls/egyptian-mummies/');
+    expect(await page.locator('html').getAttribute('data-camera')).toBe('zoom-in');
+    expect(await page.locator('html').getAttribute('data-camera-names')).not.toContain('specimen');
+  });
+
   test('wayfinding chrome is named so it never moves with the page', async ({ page }) => {
     await page.goto('/');
     const names = await page.evaluate(() =>

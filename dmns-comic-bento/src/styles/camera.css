@@ -141,3 +141,28 @@ html:active-view-transition-type(calm)::view-transition-new(*) {
 @keyframes cam-deal {
   from { translate: 0 100%; }
 }
+
+/* Step 7: the Specimen traveler. The on-screen Specimen on each side shares
+   one name, so it hops from spot to spot across the move (a small arc on top
+   of the browser's position morph) and changes pose on landing. Never on
+   documentary pages; never in a calm move. */
+::view-transition-group(specimen) {
+  z-index: 10;
+  animation-duration: 560ms;
+  animation-timing-function: var(--ease-camera);
+}
+::view-transition-image-pair(specimen) {
+  animation: specimen-hop 560ms var(--ease-camera) both;
+}
+::view-transition-old(specimen) {
+  animation: cam-fade-out 300ms steps(1, end) both;
+}
+::view-transition-new(specimen) {
+  animation: cam-fade-in 300ms steps(1, start) 260ms both;
+}
+
+@keyframes specimen-hop {
+  0% { translate: 0 0; }
+  45% { translate: 0 -48px; }
+  100% { translate: 0 0; }
+}

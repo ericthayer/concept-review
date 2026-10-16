@@ -95,6 +95,17 @@ skips the running one first. Below full motion, or without the API, `update` run
 Without JS: no Look closer buttons, floors are stacked spreads with anchor links, and filters are
 hidden with every panel shown. Reduced motion and Still Panels: the same state changes, instantly.
 
-## Step 7
+## Step 7: Specimen traveler (`src/styles/camera.css`, `src/runtime/camera.ts`)
 
-The Specimen traveler is added in a later step.
+On every non-calm camera move, the first on-screen `<dmns-specimen>` on each side gets
+`view-transition-name: specimen`. The browser morphs its position and size; on top of that the
+image pair hops in a 48px arc (560ms) and the pose swaps on landing in held frames (old pose
+holds to 300ms, new pose appears at 260ms, `steps(1)`), so it reads as drawn, not tweened.
+
+| Case | Result |
+|---|---|
+| Both pages show a Specimen on screen | It hops from one spot to the other |
+| Only one side | It leaves or arrives with its page |
+| Documentary page (Egyptian Mummies, anthropology, living cultures) on either side of the reveal | Never named; no Specimen is drawn there at all |
+| Reduced motion or Still Panels | Never named; the calm crossfade |
+| Same-document morphs | The Specimen stays in its panel |

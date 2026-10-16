@@ -2,6 +2,11 @@
 
 Each entry is one step of the build order (§15). Every step ends with `npm run check` green.
 
+## Step 7: Specimen traveler (2026-10-16)
+
+- The on-screen Specimen hops between pages on camera moves, changing pose on landing.
+- Never on documentary pages or in calm moves; covered by `tests/e2e/camera.spec.ts`.
+
 ## Step 6: Same-document morphs (2026-10-16)
 
 - `morph()` helper over `startViewTransition({ update, types })` with scoped names.
