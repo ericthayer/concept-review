@@ -1,0 +1,11 @@
+{
+  "spreads": [
+    { "id": "cover", "kicker": "The Cover", "heading": "Denver Museum of Nature & Science", "layout": "cover" },
+    { "id": "mythic", "kicker": "Special Edition", "heading": "Here be dragons", "layout": "mosaic" },
+    { "id": "ways-in", "kicker": "Three ways in", "heading": "Pick a door", "layout": "trio" },
+    { "id": "floors", "kicker": "Meanwhile, on every floor…", "heading": "The halls", "layout": "stair" },
+    { "id": "coming", "kicker": "Coming attractions", "heading": "Next issue", "layout": "strip" },
+    { "id": "science", "kicker": "Behind the Glass", "heading": "Science and collections", "layout": "trio" },
+    { "id": "getting-here", "kicker": "Getting here", "heading": "Plan your visit", "layout": "mosaic" }
+  ]
+}

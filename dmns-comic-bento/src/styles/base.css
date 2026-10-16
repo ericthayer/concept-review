@@ -1,0 +1,207 @@
+/* Base: reset, page ground, type primitives, focus, utilities. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--ink-0);
+  color: var(--paper-text);
+  font-family: var(--font-display);
+  font-stretch: 100%;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.18em;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+address {
+  font-style: normal;
+}
+
+:focus-visible {
+  outline: var(--focus-ring) solid var(--ticket);
+  outline-offset: var(--focus-offset);
+  box-shadow: 0 0 0 var(--focus-offset) var(--ink-0);
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+.vh {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--chrome-pad);
+  top: -100px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--ticket);
+  color: var(--ink-0);
+  font-family: var(--font-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+.skip-link:focus {
+  top: var(--chrome-pad);
+}
+
+.kicker {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+}
+
+.plain-heading {
+  font-family: var(--font-display);
+  font-stretch: 88%;
+  font-weight: 800;
+  font-size: 1.375rem;
+  line-height: 1.1;
+}
+
+.ext,
+.arrow {
+  display: inline-block;
+  margin-inline-start: 0.25em;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.todo {
+  font-family: var(--font-display);
+  font-stretch: 88%;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.todo__tag {
+  display: inline-block;
+  padding: 0.15em 0.45em;
+  background: var(--pop-red);
+  color: var(--paper-text);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.page-counter {
+  padding: 0 var(--chrome-pad);
+  margin-block: 0.5rem;
+  text-align: end;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--paper-text);
+}
+
+.link-list {
+  display: grid;
+  gap: 0.5rem;
+}
+.link-list--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.link-list a {
+  display: inline-block;
+  min-height: 24px;
+  padding-block: 2px;
+}
+
+.editorial {
+  max-width: calc(var(--measure) + 2 * var(--chrome-pad));
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 64px) var(--chrome-pad);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+.editorial h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-block-end: 1rem;
+}
+.editorial h2 {
+  margin-block: 2rem 0.75rem;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+.link-list--large a {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* JS-upgraded controls keep their space from first paint (the boot script adds .js), so revealing them never shifts layout. */
+html:not(.js) [data-js-only] {
+  display: none !important;
+}
+[hidden] {
+  display: none !important;
+}
