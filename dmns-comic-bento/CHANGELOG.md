@@ -2,6 +2,13 @@
 
 Each entry is one step of the build order (§15). Every step ends with `npm run check` green.
 
+## Step 6: Same-document morphs (2026-10-16)
+
+- `morph()` helper over `startViewTransition({ update, types })` with scoped names.
+- Look closer / Step back (Escape returns focus), floor tabs as an ARIA tablist with an elevator
+  slide, filters with an un-ink exit; all announced through one polite live region.
+- `tests/e2e/morph.spec.ts`: keyboard paths at full and reduced motion.
+
 ## Step 5: Cross-document camera (2026-10-16)
 
 - Every in-book navigation is a camera move: zoom in and out (panel ⇄ splash, caption ⇄ h1),

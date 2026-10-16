@@ -1,0 +1,67 @@
+/* Step 6: same-document morphs (src/runtime/transition.ts). Each runs only at
+   full motion; below that the change is instant. */
+
+/* Lean-in / lean-out: panels slide and resize to their new cells. */
+html:active-view-transition-type(lean-in, lean-out)::view-transition-group(.lean) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease-camera);
+}
+html:active-view-transition-type(lean-in, lean-out)::view-transition-old(.lean),
+html:active-view-transition-type(lean-in, lean-out)::view-transition-new(.lean) {
+  animation-duration: 420ms;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Floors ride an elevator: going up, the new floor comes down from above. */
+html:active-view-transition-type(floor)::view-transition-group(floor-stage) {
+  animation-duration: 420ms;
+  animation-timing-function: var(--ease-camera);
+}
+html:active-view-transition-type(floor)::view-transition-old(floor-stage),
+html:active-view-transition-type(floor)::view-transition-new(floor-stage) {
+  mix-blend-mode: normal;
+  height: 100%;
+  object-fit: none;
+  object-position: top;
+}
+html:active-view-transition-type(floor-up)::view-transition-old(floor-stage) {
+  animation: floor-exit-down 420ms var(--ease-camera) both;
+}
+html:active-view-transition-type(floor-up)::view-transition-new(floor-stage) {
+  animation: floor-enter-from-above 420ms var(--ease-camera) both;
+}
+html:active-view-transition-type(floor-down)::view-transition-old(floor-stage) {
+  animation: floor-exit-up 420ms var(--ease-camera) both;
+}
+html:active-view-transition-type(floor-down)::view-transition-new(floor-stage) {
+  animation: floor-enter-from-below 420ms var(--ease-camera) both;
+}
+
+/* Filters: leaving panels un-ink (a stepped wipe), staying panels slide, arriving panels drop in. */
+html:active-view-transition-type(filter)::view-transition-group(.filtered) {
+  animation-duration: 360ms;
+  animation-timing-function: var(--ease-camera);
+}
+html:active-view-transition-type(filter)::view-transition-old(.filtered):only-child {
+  animation: un-ink 240ms steps(4, end) both;
+}
+html:active-view-transition-type(filter)::view-transition-new(.filtered):only-child {
+  animation: ink-drop 300ms var(--ease-camera) 120ms both;
+}
+
+@keyframes floor-exit-down {
+  to { translate: 0 25%; opacity: 0; }
+}
+@keyframes floor-enter-from-above {
+  from { translate: 0 -25%; opacity: 0; }
+}
+@keyframes floor-exit-up {
+  to { translate: 0 -25%; opacity: 0; }
+}
+@keyframes floor-enter-from-below {
+  from { translate: 0 25%; opacity: 0; }
+}
+@keyframes un-ink {
+  to { clip-path: inset(0 0 0 100%); }
+}

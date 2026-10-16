@@ -15,7 +15,7 @@ test.describe('full motion', () => {
   test.beforeEach(async ({ page }) => page.emulateMedia({ reducedMotion: 'no-preference' }));
 
   test('zoom in, turn the page, zoom out, new issue', async ({ page }) => {
-    await page.goto('/halls/');
+    await page.goto('/halls/#floor-3');
     expect(await follow(page, 'a.panel__link[href="/halls/prehistoric-journey/"]', '/halls/prehistoric-journey/')).toBe('zoom-in');
     expect(await follow(page, '#p-next a.panel__link', '/halls/*/')).toBe('turn-next');
     expect(await follow(page, '#p-prev a.panel__link', '/halls/prehistoric-journey/')).toBe('turn-prev');
@@ -36,7 +36,7 @@ test.describe('reduced motion', () => {
   test.beforeEach(async ({ page }) => page.emulateMedia({ reducedMotion: 'reduce' }));
 
   test('every move becomes a calm crossfade', async ({ page }) => {
-    await page.goto('/halls/');
+    await page.goto('/halls/#floor-3');
     expect(await follow(page, 'a.panel__link[href="/halls/prehistoric-journey/"]', '/halls/prehistoric-journey/')).toBe('calm');
     await expect(page.locator('[style*="view-transition-name"]')).toHaveCount(0);
   });

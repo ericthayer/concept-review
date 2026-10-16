@@ -79,6 +79,22 @@ parsed, so the zoom-out target panel exists when names are assigned (a few ms on
 - Without JS: the browser's default crossfade. Without cross-document view transitions: instant
   navigation, nothing lost.
 
-## Steps 6 and 7
+## Step 6: Same-document morphs (`src/styles/morph.css`, `src/runtime/transition.ts`)
 
-Same-document morphs and the Specimen traveler are added in later steps.
+One helper, `morph(update, types, named)`, names the elements that should move, calls
+`document.startViewTransition({ update, types })`, and clears the names on `finished`. A new morph
+skips the running one first. Below full motion, or without the API, `update` runs at once.
+
+| Morph | Trigger | Motion | Duration | Keyboard and announcements |
+|---|---|---|---|---|
+| Lean-in | "Look closer" button (click only) | Every panel in the spread is named (`view-transition-class: lean`) and slides to its new cell; the chosen panel spans the full row | 420ms, `--ease-camera` | Enter or Space opens; focus moves to the panel heading; "{title}, up close. Press Escape to step back." |
+| Lean-out | Same button ("Step back") or Escape | Reverse | 420ms | Focus returns to the button; "Back to the full spread." |
+| Floor tabs | Tab click, ←/→, Home, End | The floor stage slides vertically: going up, the new floor comes down from above (elevator) | 420ms | ARIA tablist with roving tabindex; the hash is kept in sync; "Showing Floor n." |
+| Filters | `aria-pressed` buttons | Leaving panels un-ink (stepped wipe), staying panels slide, arriving panels drop in | 240ms out, 360ms move, 300ms in | "Showing n of N." |
+
+Without JS: no Look closer buttons, floors are stacked spreads with anchor links, and filters are
+hidden with every panel shown. Reduced motion and Still Panels: the same state changes, instantly.
+
+## Step 7
+
+The Specimen traveler is added in a later step.

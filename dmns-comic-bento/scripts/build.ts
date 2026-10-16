@@ -34,6 +34,7 @@ export const STYLESHEETS = [
   'ink.css',
   'boil.css',
   'camera.css',
+  'morph.css',
   'fallbacks.css',
 ];
 
