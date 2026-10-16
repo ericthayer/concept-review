@@ -1,0 +1,6 @@
+.build/
+dist/
+test-results/
+playwright-report/
+node_modules/
+dist-media/

@@ -1,0 +1,46 @@
+{
+  "exhibitions": [
+    {
+      "slug": "mythic-creatures",
+      "name": "Mythic Creatures: Dragons, Unicorns & Mermaids",
+      "kind": "exhibition",
+      "opens": "2026-10-16",
+      "closes": null,
+      "dateLabel": "Opens Oct. 16, 2026",
+      "description": "TODO: confirm with DMNS",
+      "media": "exhibition-mythic-creatures"
+    },
+    {
+      "slug": "changing-landscapes",
+      "name": "Changing Landscapes: Inside Venice, Mesa Verde, and Rapa Nui",
+      "kind": "exhibition",
+      "opens": null,
+      "closes": "2027-01-03",
+      "dateLabel": "Through Jan. 3, 2027",
+      "description": "TODO: confirm with DMNS",
+      "media": "exhibition-changing-landscapes"
+    },
+    {
+      "slug": "magical-winter-nights",
+      "name": "Magical Winter Nights",
+      "kind": "event",
+      "opens": "2026-11-25",
+      "closes": null,
+      "dateLabel": "Evening event · Opens Nov. 25, 2026",
+      "description": "TODO: confirm with DMNS",
+      "media": "exhibition-magical-winter-nights"
+    },
+    {
+      "slug": "pokemon-fossil-museum",
+      "name": "Pokémon Fossil Museum",
+      "kind": "exhibition",
+      "opens": "2027-05-28",
+      "closes": null,
+      "dateLabel": "Coming 2027 · Opens May 28, 2027",
+      "comingLabel": "Coming 2027",
+      "thirdPartyIp": true,
+      "description": "TODO: confirm with DMNS",
+      "media": "exhibition-pokemon-fossil-museum"
+    }
+  ]
+}

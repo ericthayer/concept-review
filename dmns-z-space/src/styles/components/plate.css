@@ -1,0 +1,98 @@
+/* Media plates. Placeholders render as duotone plates labelled like a case card. */
+.plate {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--surface-1);
+  aspect-ratio: 16 / 10;
+  container: plate / inline-size;
+}
+.plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.plate__surface {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: end;
+  padding: clamp(var(--space-3), 5cqi, var(--space-6));
+  background:
+    radial-gradient(ellipse 55% 60% at 50% 42%, color-mix(in oklch, var(--light-warm), transparent 80%), transparent 70%),
+    linear-gradient(160deg, color-mix(in oklch, var(--wing), var(--surface-0) 72%), color-mix(in oklch, var(--wing), var(--surface-0) 90%));
+}
+.plate__surface::before {
+  /* the "object": a soft lit silhouette so composition holds without photography */
+  content: '';
+  position: absolute;
+  inset: 22% 30% 26%;
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse at 50% 40%, color-mix(in oklch, var(--wing), var(--ink) 40%), transparent 72%);
+  opacity: 0.32;
+}
+.plate__label {
+  position: relative;
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: clamp(0.6875rem, 2.6cqi, var(--step-label));
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--ink);
+  border-block-start: 1px solid color-mix(in oklch, var(--wing), transparent 30%);
+  padding-block-start: var(--space-2);
+  max-width: 28ch;
+}
+.plate__tag {
+  position: absolute;
+  inset-block-start: clamp(var(--space-2), 3cqi, var(--space-4));
+  inset-inline-end: clamp(var(--space-2), 3cqi, var(--space-4));
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px dashed color-mix(in oklch, var(--ink), transparent 50%);
+  border-radius: var(--radius);
+  padding: 0.1em 0.5em;
+}
+.plate__credit {
+  position: absolute;
+  inset-inline-end: var(--space-2);
+  inset-block-end: var(--space-2);
+  font-family: var(--font-label);
+  font-size: 0.6875rem;
+  color: var(--ink-muted);
+}
+
+/* Wall labels: name, metadata line, short paragraph. */
+.wall-label {
+  border-block-start: 2px solid var(--wing);
+  padding-block-start: var(--space-4);
+  max-width: 34rem;
+}
+.wall-label__name {
+  font-size: var(--step-h3);
+  font-weight: 500;
+}
+.wall-label__meta {
+  margin-block: var(--space-2) var(--space-3);
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--step-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-muted);
+}
+.wall-label__text {
+  max-width: var(--measure);
+}
+.wall-label__note {
+  margin-block-start: var(--space-3);
+  font-size: var(--step-small);
+  color: var(--ink-muted);
+}
+.wall-label .button {
+  margin-block-start: var(--space-5);
+}

@@ -1,0 +1,143 @@
+{
+  "name": "Denver Museum of Nature & Science",
+  "shortName": "DMNS",
+  "conceptNote": "Concept redesign. Not the official Denver Museum of Nature & Science website.",
+  "liveSite": "https://www.dmns.org/",
+  "address": {
+    "street": "2001 Colorado Blvd.",
+    "city": "Denver",
+    "region": "CO",
+    "postalCode": "80205"
+  },
+  "hours": {
+    "daily": "9 a.m.–5 p.m. daily",
+    "extended": "9 a.m.–9 p.m. most Fridays",
+    "closed": "Closed Dec. 25 and Aug. 26"
+  },
+  "outbound": {
+    "tickets": { "label": "Buy Tickets", "href": "https://www.dmns.org/purchase/" },
+    "membership": { "label": "Membership", "href": "https://www.dmns.org/membership/" },
+    "donate": { "label": "Donate", "href": "https://www.dmns.org/?campaign=677961" },
+    "login": { "label": "Log in", "href": "https://www.dmns.org/login" },
+    "search": { "label": "Search dmns.org", "href": "https://www.dmns.org/search/" },
+    "catalyst": { "label": "Catalyst Magazine", "href": "https://www.dmns.org/catalyst" },
+    "digitalCollections": { "label": "DMNS Digital Collections", "href": "https://dmns.netx.net/portals/public/#page/home" }
+  },
+  "primaryNav": [
+    { "label": "Halls", "href": "/halls/" },
+    { "label": "Special Exhibitions", "href": "/special-exhibitions/" },
+    { "label": "Theaters", "href": "/theaters/" },
+    { "label": "Visit", "href": "/visit/" }
+  ],
+  "secondaryNav": ["membership", "donate"],
+  "pages": {
+    "atrium": {
+      "title": "The Atrium",
+      "headline": "Denver Museum of Nature & Science",
+      "doorwaysHeading": "Three doorways",
+      "nowShowingHeading": "Now showing",
+      "eventsHeading": "Upcoming events",
+      "behindGlassHeading": "Behind the Glass",
+      "visitHeading": "Plan your visit"
+    },
+    "halls": {
+      "title": "Directory",
+      "lede": "Permanent halls across three floors and the grounds of City Park.",
+      "legacyPath": "/exhibitions/permanent-exhibitions/"
+    },
+    "specialExhibitions": {
+      "title": "Special Exhibitions Gallery",
+      "lede": "Exhibitions and evening events, current and coming.",
+      "legacyPath": "/exhibitions/temporary-exhibitions/"
+    },
+    "theaters": {
+      "title": "Theaters & Dome",
+      "lede": "Films and shows."
+    },
+    "sturmFamilyWing": {
+      "title": "The East Entrance",
+      "subtitle": "Sturm Family Wing",
+      "lede": "Part curiosity lab. Part classroom. Part cultural commons.",
+      "legacyPath": "/visit/sturm-family-wing/",
+      "spaces": [
+        { "name": "Sturm Family Plaza", "text": "Free, open daily 5 a.m.–11 p.m. T.REX Cafe and community events." },
+        { "name": "Sturm Infinity Theater", "text": "Giant-screen films, lectures and evening events. Separate ticket.", "href": "/theaters/sturm-infinity-theater/" },
+        { "name": "Sturm Infinity Lobby", "text": "Events only." }
+      ]
+    },
+    "visit": {
+      "title": "Plan Your Visit",
+      "sections": [
+        { "id": "hours", "name": "Hours", "text": "9 a.m.–5 p.m. daily. 9 a.m.–9 p.m. most Fridays. Closed Dec. 25 and Aug. 26." },
+        { "id": "address", "name": "Address", "text": "2001 Colorado Blvd., Denver, CO 80205" },
+        { "id": "pricing", "name": "Pricing", "text": "Ticket prices are listed on dmns.org.", "outbound": "tickets" },
+        { "id": "accessibility", "name": "Accessibility", "text": "TODO: confirm with DMNS" },
+        { "id": "getting-here", "name": "Getting here", "text": "TODO: confirm with DMNS" },
+        { "id": "eat-and-shop", "name": "Eat & shop", "text": "TODO: confirm with DMNS" }
+      ]
+    },
+    "programs": {
+      "title": "Programs & Events",
+      "items": ["Calendar", "Science Lounge", "Free Days", "Camps", "Birthdays", "Discovery Station", "Host an Event"],
+      "itemText": "TODO: confirm with DMNS"
+    },
+    "learn": {
+      "title": "School Programs",
+      "lede": "TODO: confirm with DMNS"
+    },
+    "science": {
+      "title": "Behind the Glass",
+      "lede": "Collections, labs, people, publications and research.",
+      "topics": ["Collections", "Labs", "People", "Publications", "Research"],
+      "collections": [
+        "Anthropology & Archaeology",
+        "Paleontology & Geology",
+        "Vertebrate & Invertebrate Zoology",
+        "Archives"
+      ],
+      "topicText": "TODO: confirm with DMNS"
+    },
+    "about": {
+      "title": "About the Museum",
+      "lede": "TODO: confirm with DMNS"
+    },
+    "support": {
+      "title": "Support the Museum",
+      "lede": "TODO: confirm with DMNS"
+    },
+    "notFound": {
+      "title": "This hall is dark",
+      "lede": "The page you were looking for is not on this floorplan."
+    }
+  },
+  "footer": {
+    "landAcknowledgment": "TODO: confirm with DMNS (use the exact land acknowledgment wording from the dmns.org footer, which names the Cheyenne, Arapaho and Ute Nations and 48 contemporary tribal nations)",
+    "credentials": [
+      "Supported by the Scientific and Cultural Facilities District (SCFD)",
+      "Charity Navigator Four Star"
+    ],
+    "nonprofit": "The Denver Museum of Nature & Science is a 501(c) 3 nonprofit organization.",
+    "newsletter": {
+      "heading": "Newsletter",
+      "note": "Concept only: this form does not submit anywhere."
+    },
+    "social": [
+      { "label": "Facebook", "href": "https://www.facebook.com/DMNSorg" },
+      { "label": "Instagram", "href": "https://www.instagram.com/denvermuseumns/" },
+      { "label": "Threads", "href": "https://www.threads.net/@denvermuseumns" },
+      { "label": "TikTok", "href": "https://www.tiktok.com/@denvermns" },
+      { "label": "YouTube", "href": "https://www.youtube.com/user/DMNSorg" },
+      { "label": "Bluesky", "href": "https://bsky.app/profile/denvermuseumns.bsky.social" }
+    ],
+    "links": [
+      { "label": "Conditions of Use", "href": "https://www.dmns.org/about/policies-and-permissions/#conditions" },
+      { "label": "Privacy Policy", "href": "https://www.dmns.org/about/policies-and-permissions/#privacypolicy" },
+      { "label": "Safe Spaces Policy", "href": "https://www.dmns.org/about/policies-and-permissions/#safepolicy" },
+      { "label": "Comment Policy", "href": "https://www.dmns.org/about/policies-and-permissions/#commentpolicy" },
+      { "label": "Press Room", "href": "https://www.dmns.org/press-room/" },
+      { "label": "Careers", "href": "https://www.dmns.org/about/careers/" },
+      { "label": "Contact Us", "href": "https://www.dmns.org/contact-us/" },
+      { "label": "Financials", "href": "https://www.dmns.org/about/museum-financials/" }
+    ]
+  }
+}

@@ -1,0 +1,414 @@
+/*
+ * All View Transition choreography (§3.3). JS only adds types and dynamic names; CSS animates.
+ * Only transform, opacity and filter animate. One rotation axis max, no roll, scale delta ≤ 1.4×.
+ * Sign convention is a physical camera: walking right slides the room left, climbing slides it down.
+ */
+@view-transition {
+  navigation: auto;
+  types: none;
+}
+
+/* Persistent HUD: stays fixed while the building moves around it. */
+.site-header {
+  view-transition-name: hud-header;
+}
+.minimap {
+  view-transition-name: hud-minimap;
+}
+[data-hud='ticket'] {
+  view-transition-name: hud-ticket;
+}
+::view-transition-group(hud-header),
+::view-transition-group(hud-minimap),
+::view-transition-group(hud-ticket),
+::view-transition-new(hud-header),
+::view-transition-new(hud-minimap),
+::view-transition-new(hud-ticket) {
+  animation: none;
+}
+::view-transition-old(hud-header),
+::view-transition-old(hud-minimap),
+::view-transition-old(hud-ticket) {
+  display: none;
+}
+
+/* The camera walks into the thing you clicked. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  transform-origin: var(--vt-origin-x) var(--vt-origin-y);
+}
+
+/* enter: dolly forward through a doorway; the lights come up in the new room. */
+html:active-view-transition-type(enter)::view-transition-old(root) {
+  animation: vt-enter-old var(--dur-enter) var(--ease-walk) both;
+}
+html:active-view-transition-type(enter)::view-transition-new(root) {
+  animation: vt-enter-new var(--dur-enter) var(--ease-walk) both;
+}
+@keyframes vt-enter-old {
+  55% {
+    opacity: 0;
+  }
+  to {
+    transform: scale(1.35);
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+@keyframes vt-enter-new {
+  from {
+    transform: scale(0.82);
+    opacity: 0;
+    filter: brightness(0.4);
+  }
+  25% {
+    opacity: 0;
+  }
+}
+
+/* exit: dolly backward; the room recedes and dims. */
+html:active-view-transition-type(exit)::view-transition-old(root) {
+  animation: vt-exit-old var(--dur-exit) var(--ease-walk) both;
+}
+html:active-view-transition-type(exit)::view-transition-new(root) {
+  animation: vt-exit-new var(--dur-exit) var(--ease-walk) both;
+}
+@keyframes vt-exit-old {
+  60% {
+    opacity: 0;
+  }
+  to {
+    transform: scale(0.82);
+    filter: brightness(0.4);
+    opacity: 0;
+  }
+}
+@keyframes vt-exit-new {
+  from {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+}
+
+/* lateral: walk along the corridor. rotateY is the only rotation axis. */
+html:active-view-transition-type(lateral-r)::view-transition-old(root) {
+  animation: vt-walk-out-left var(--dur-lateral) var(--ease-walk) both;
+}
+html:active-view-transition-type(lateral-r)::view-transition-new(root) {
+  animation: vt-walk-in-right var(--dur-lateral) var(--ease-walk) both;
+}
+html:active-view-transition-type(lateral-l)::view-transition-old(root) {
+  animation: vt-walk-out-right var(--dur-lateral) var(--ease-walk) both;
+}
+html:active-view-transition-type(lateral-l)::view-transition-new(root) {
+  animation: vt-walk-in-left var(--dur-lateral) var(--ease-walk) both;
+}
+@keyframes vt-walk-out-left {
+  55% {
+    opacity: 0;
+  }
+  to {
+    transform: perspective(1400px) translateX(-30vw) rotateY(8deg);
+    opacity: 0;
+  }
+}
+@keyframes vt-walk-in-right {
+  from {
+    transform: perspective(1400px) translateX(30vw) rotateY(-8deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0;
+  }
+}
+@keyframes vt-walk-out-right {
+  55% {
+    opacity: 0;
+  }
+  to {
+    transform: perspective(1400px) translateX(30vw) rotateY(-8deg);
+    opacity: 0;
+  }
+}
+@keyframes vt-walk-in-left {
+  from {
+    transform: perspective(1400px) translateX(-30vw) rotateY(8deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0;
+  }
+}
+
+/* ascend / descend: ride the stairwell; rails streak past at twice the room's speed. */
+html:active-view-transition-type(ascend)::view-transition-old(root) {
+  animation: vt-sink var(--dur-stairs) var(--ease-walk) both;
+}
+html:active-view-transition-type(ascend)::view-transition-new(root) {
+  animation: vt-drop-in var(--dur-stairs) var(--ease-walk) both;
+}
+html:active-view-transition-type(descend)::view-transition-old(root) {
+  animation: vt-rise var(--dur-stairs) var(--ease-walk) both;
+}
+html:active-view-transition-type(descend)::view-transition-new(root) {
+  animation: vt-lift-in var(--dur-stairs) var(--ease-walk) both;
+}
+@keyframes vt-sink {
+  55% {
+    opacity: 0;
+  }
+  to {
+    transform: translateY(40vh);
+    opacity: 0;
+  }
+}
+@keyframes vt-drop-in {
+  from {
+    transform: translateY(-40vh);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0;
+  }
+}
+@keyframes vt-rise {
+  55% {
+    opacity: 0;
+  }
+  to {
+    transform: translateY(-40vh);
+    opacity: 0;
+  }
+}
+@keyframes vt-lift-in {
+  from {
+    transform: translateY(40vh);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0;
+  }
+}
+
+.stair-rails {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  visibility: hidden;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0 11vh,
+    color-mix(in oklch, var(--wing), transparent 55%) 11vh calc(11vh + 1px)
+  );
+  mask-image: linear-gradient(to right, black 0 6%, transparent 6% 94%, black 94%);
+}
+html:active-view-transition-type(ascend, descend) .stair-rails {
+  view-transition-name: stair-rails;
+  visibility: visible;
+}
+::view-transition-old(stair-rails) {
+  display: none;
+}
+html:active-view-transition-type(ascend)::view-transition-new(stair-rails) {
+  animation: vt-rails-down var(--dur-stairs) var(--ease-walk) both;
+}
+html:active-view-transition-type(descend)::view-transition-new(stair-rails) {
+  animation: vt-rails-up var(--dur-stairs) var(--ease-walk) both;
+}
+@keyframes vt-rails-down {
+  0% {
+    transform: translateY(-80vh);
+    opacity: 0;
+  }
+  30%,
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(80vh);
+    opacity: 0;
+  }
+}
+@keyframes vt-rails-up {
+  0% {
+    transform: translateY(80vh);
+    opacity: 0;
+  }
+  30%,
+  70% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80vh);
+    opacity: 0;
+  }
+}
+
+/* Shared-element doorway morphs (Directory card → hall hero, gallery card → exhibition). */
+::view-transition-group(*.hall-door),
+::view-transition-group(*.hall-door-title) {
+  animation-duration: var(--dur-enter);
+  animation-timing-function: var(--ease-walk);
+}
+::view-transition-old(*.hall-door),
+::view-transition-new(*.hall-door) {
+  height: 100%;
+  object-fit: cover;
+}
+::view-transition-old(*.hall-door-title),
+::view-transition-new(*.hall-door-title) {
+  height: 100%;
+  width: auto;
+  object-fit: none;
+  object-position: left top;
+}
+html:active-view-transition-type(exit)::view-transition-group(*.hall-door),
+html:active-view-transition-type(exit)::view-transition-group(*.hall-door-title) {
+  animation-duration: var(--dur-exit);
+}
+
+/* Same-document moves: the page holds still; only the named region moves. */
+html:active-view-transition-type(floor-up, floor-down, filter, vitrine-open, vitrine-close)::view-transition-old(root),
+html:active-view-transition-type(floor-up, floor-down, filter, vitrine-open, vitrine-close)::view-transition-new(root) {
+  animation-duration: var(--dur-ui);
+}
+.floorplan__stage {
+  view-transition-name: floorplan-stage;
+}
+html:active-view-transition-type(floor-up)::view-transition-old(floorplan-stage) {
+  animation: vt-sink var(--dur-stairs) var(--ease-walk) both;
+}
+html:active-view-transition-type(floor-up)::view-transition-new(floorplan-stage) {
+  animation: vt-drop-in var(--dur-stairs) var(--ease-walk) both;
+}
+html:active-view-transition-type(floor-down)::view-transition-old(floorplan-stage) {
+  animation: vt-rise var(--dur-stairs) var(--ease-walk) both;
+}
+html:active-view-transition-type(floor-down)::view-transition-new(floorplan-stage) {
+  animation: vt-lift-in var(--dur-stairs) var(--ease-walk) both;
+}
+::view-transition-group(floorplan-stage) {
+  overflow: clip;
+}
+::view-transition-group(*.filter-item) {
+  animation-duration: var(--dur-lateral);
+  animation-timing-function: var(--ease-walk);
+}
+::view-transition-old(*.filter-item):only-child {
+  animation: vt-into-darkness var(--dur-exit) var(--ease-walk) both;
+}
+::view-transition-new(*.filter-item):only-child {
+  animation: vt-out-of-darkness var(--dur-enter) var(--ease-walk) both;
+}
+@keyframes vt-into-darkness {
+  to {
+    opacity: 0;
+    filter: brightness(0.3);
+    transform: scale(0.96);
+  }
+}
+@keyframes vt-out-of-darkness {
+  from {
+    opacity: 0;
+    filter: brightness(0.3);
+    transform: scale(0.96);
+  }
+}
+::view-transition-group(vitrine-plate) {
+  animation-duration: var(--dur-enter);
+  animation-timing-function: var(--ease-walk);
+}
+
+/* Sealed hall: a shortened enter that stops at the construction scrim. */
+html:active-view-transition-type(sealed)::view-transition-old(root) {
+  animation: vt-sealed-old 480ms var(--ease-walk) both;
+}
+html:active-view-transition-type(sealed)::view-transition-new(root) {
+  animation: vt-sealed-new 480ms var(--ease-walk) both;
+}
+@keyframes vt-sealed-old {
+  to {
+    transform: scale(1.12);
+    opacity: 0;
+  }
+}
+@keyframes vt-sealed-new {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+    filter: brightness(0.4);
+  }
+}
+
+/* Fallback ladder: without cross-document VT, the lights come up on <main> after an instant load. */
+.vt-fallback .main {
+  animation: vt-lights-up var(--dur-lights) var(--ease-out) both;
+}
+@keyframes vt-lights-up {
+  from {
+    opacity: 0;
+    filter: brightness(0.4);
+  }
+}
+
+/*
+ * Calm: prefers-reduced-motion or Stillness. Every move collapses to a 150ms crossfade.
+ * No scale, translate, blur, parallax or rails. (JS also withholds morph names.)
+ */
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+html[data-stillness='on']:active-view-transition-type(enter, exit, lateral-l, lateral-r, ascend, descend, sealed, floor-up, floor-down, filter, vitrine-open, vitrine-close)::view-transition-old(root) {
+  animation: vt-fade-out var(--dur-calm) linear both;
+}
+html[data-stillness='on']:active-view-transition-type(enter, exit, lateral-l, lateral-r, ascend, descend, sealed, floor-up, floor-down, filter, vitrine-open, vitrine-close)::view-transition-new(root) {
+  animation: vt-fade-in var(--dur-calm) linear both;
+}
+html[data-stillness='on']::view-transition-group(*) {
+  animation: none;
+}
+html[data-stillness='on'] .stair-rails {
+  display: none;
+}
+html[data-stillness='on'].vt-fallback .main {
+  animation: vt-fade-in var(--dur-calm) linear both;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:active-view-transition-type(enter, exit, lateral-l, lateral-r, ascend, descend, sealed, floor-up, floor-down, filter, vitrine-open, vitrine-close)::view-transition-old(root) {
+    animation: vt-fade-out var(--dur-calm) linear both;
+  }
+  html:active-view-transition-type(enter, exit, lateral-l, lateral-r, ascend, descend, sealed, floor-up, floor-down, filter, vitrine-open, vitrine-close)::view-transition-new(root) {
+    animation: vt-fade-in var(--dur-calm) linear both;
+  }
+  ::view-transition-group(*) {
+    animation: none;
+  }
+  .stair-rails {
+    display: none;
+  }
+  .vt-fallback .main {
+    animation: vt-fade-in var(--dur-calm) linear both;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  html:active-view-transition-type(enter)::view-transition-old(root) {
+    animation-name: vt-enter-old-solid;
+  }
+  @keyframes vt-enter-old-solid {
+    to {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+  }
+}

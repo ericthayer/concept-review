@@ -1,0 +1,131 @@
+/* <dmns-minimap>: the z-space HUD, pinned bottom-left. */
+.minimap {
+  position: fixed;
+  inset-inline-start: var(--space-4);
+  inset-block-end: var(--space-4);
+  z-index: 40;
+  display: block;
+  max-width: min(22rem, calc(100vw - 2 * var(--space-4)));
+  font-family: var(--font-label);
+}
+.minimap__panel {
+  background: color-mix(in oklch, var(--surface-1), transparent 8%);
+  border: var(--hairline);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+}
+.minimap__chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--target);
+  padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--step-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-variant-numeric: tabular-nums;
+}
+.minimap__chip::-webkit-details-marker {
+  display: none;
+}
+.minimap__chip::after {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-inline-start: auto;
+  border-inline-end: 1.5px solid currentColor;
+  border-block-end: 1.5px solid currentColor;
+  transform: rotate(-135deg) translateY(-2px);
+}
+.minimap__panel[open] .minimap__chip::after {
+  transform: rotate(45deg) translateY(-2px);
+}
+.minimap__iso {
+  width: 3.5rem;
+  height: auto;
+  flex: none;
+}
+.minimap__plate path {
+  fill: var(--surface-2);
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.minimap__plate.is-current path {
+  fill: color-mix(in oklch, var(--wing), transparent 72%);
+  stroke: var(--wing);
+}
+.minimap__here {
+  fill: var(--signal);
+}
+.minimap__here-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.minimap__rooms {
+  max-height: min(60vh, 28rem);
+  overflow-y: auto;
+  padding: var(--space-2) var(--space-4) var(--space-4);
+  border-block-start: var(--hairline);
+}
+.minimap__floor + .minimap__floor {
+  margin-block-start: var(--space-3);
+}
+.minimap__floor-name {
+  font-family: var(--font-label);
+  font-size: var(--step-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--wing);
+  padding-block: var(--space-2);
+}
+.minimap__floor-name span {
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  margin-inline-start: var(--space-2);
+}
+.minimap__rooms a {
+  display: flex;
+  align-items: center;
+  min-height: 2rem;
+  font-size: var(--step-small);
+  text-decoration: none;
+}
+.minimap__rooms a:hover {
+  text-decoration: underline;
+}
+.minimap__rooms a[aria-current='page'] {
+  color: var(--signal);
+}
+.minimap__rooms a[aria-current='page']::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  margin-inline-end: var(--space-2);
+  border-radius: 50%;
+  background: var(--signal);
+}
+.minimap__directory {
+  margin-block-start: var(--space-3);
+  padding-block-start: var(--space-3);
+  border-block-start: var(--hairline);
+  font-size: var(--step-small);
+}
+.minimap__directory a {
+  min-height: var(--target);
+}
+@media (max-width: 40rem) {
+  .minimap {
+    inset-inline: var(--space-3);
+    inset-block-end: var(--space-3);
+    max-width: none;
+  }
+  .minimap__iso {
+    display: none;
+  }
+}
