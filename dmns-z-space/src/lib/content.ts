@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import type {
   Content,
   Exhibition,
+  FloorInfo,
   Hall,
   HallsFile,
   Media,
@@ -99,10 +100,29 @@ export function parseHalls(json: Json, file = 'halls.json'): HallsFile {
       { shortName: optStr(h['shortName'], file, `halls[${i}].shortName`), spansFloors: spans },
     );
   });
+  const floors = arr(json['floors'], file, 'floors').map((raw, i): FloorInfo => {
+    const f = obj(raw, file, `floors[${i}]`);
+    const floor = f['floor'];
+    if (!(floor === 0 || floor === 1 || floor === 2 || floor === 3)) fail(file, `floors[${i}].floor`, '0–3');
+    const wing = str(f['wing'], file, `floors[${i}].wing`);
+    if (!WINGS.includes(wing as WingId)) fail(file, `floors[${i}].wing`, 'a known wing');
+    return { floor, name: str(f['name'], file, `floors[${i}].name`), theme: str(f['theme'], file, `floors[${i}].theme`), wing: wing as WingId };
+  });
+  const upper = obj(json['upperLevel'], file, 'upperLevel');
+  const upperFloor = upper['floor'];
+  if (!(upperFloor === 0 || upperFloor === 1 || upperFloor === 2 || upperFloor === 3)) fail(file, 'upperLevel.floor', '0–3');
   const plates = json['objectPlates'];
   if (typeof plates !== 'number' || plates < 0) fail(file, 'objectPlates', 'a non-negative number');
   return {
     halls,
+    floors,
+    sealedHeading: str(json['sealedHeading'], file, 'sealedHeading'),
+    upperLevel: {
+      name: str(upper['name'], file, 'upperLevel.name'),
+      floor: upperFloor,
+      hall: slug(upper['hall'], file, 'upperLevel.hall'),
+      anchor: slug(upper['anchor'], file, 'upperLevel.anchor'),
+    },
     objectPlates: plates,
     objectPlateName: str(json['objectPlateName'], file, 'objectPlateName'),
     objectPlateMeta: str(json['objectPlateMeta'], file, 'objectPlateMeta'),

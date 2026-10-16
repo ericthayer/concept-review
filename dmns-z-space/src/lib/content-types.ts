@@ -31,8 +31,20 @@ export interface Hall {
   readonly media: string;
 }
 
+export interface FloorInfo {
+  readonly floor: 0 | 1 | 2 | 3;
+  readonly name: string;
+  readonly theme: string;
+  readonly wing: WingId;
+}
+
 export interface HallsFile {
   readonly halls: readonly Hall[];
+  /** Directory order, top floor first. */
+  readonly floors: readonly FloorInfo[];
+  readonly sealedHeading: string;
+  /** Wildlife Halls continues on floor 3; this is its stair-link target. */
+  readonly upperLevel: { readonly name: string; readonly floor: 0 | 1 | 2 | 3; readonly hall: string; readonly anchor: string };
   readonly objectPlates: number;
   readonly objectPlateName: string;
   readonly objectPlateMeta: string;

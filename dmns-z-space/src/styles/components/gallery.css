@@ -1,0 +1,64 @@
+/* Special Exhibitions Gallery + Theaters index. */
+.gallery {
+  container: gallery / inline-size;
+}
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-end: var(--space-6);
+}
+.filter[hidden] {
+  display: none;
+}
+.filter__button {
+  min-height: var(--target);
+  padding-inline: var(--space-4);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  font-family: var(--font-label);
+  font-size: var(--step-small);
+  cursor: pointer;
+  color: var(--ink-muted);
+}
+.filter__button[aria-pressed='true'] {
+  color: var(--ink);
+  background: var(--surface-2);
+  border-color: var(--ink-muted);
+}
+.exhibit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: var(--space-7) var(--gutter);
+}
+.exhibit-card[hidden] {
+  display: none;
+}
+.exhibit-card__link {
+  display: grid;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+.exhibit-card__plate {
+  margin-block-end: var(--space-3);
+}
+.exhibit-card__status {
+  color: var(--wing-special);
+}
+[data-wing='theaters'] .exhibit-card__status {
+  color: var(--wing-theaters);
+}
+.exhibit-card__title {
+  font-size: var(--step-h3);
+}
+.exhibit-card__date,
+.exhibit-card__text {
+  color: var(--ink-muted);
+  font-size: var(--step-small);
+}
+.exhibit-card__link:hover .exhibit-card__title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}

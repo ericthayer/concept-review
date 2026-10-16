@@ -1,0 +1,184 @@
+/* Directory: <dmns-floorplan>. Without JS every floor is listed; with JS one floor shows at a time. */
+.floorplan {
+  display: block;
+  container: floorplan / inline-size;
+}
+.floorplan__switcher {
+  position: sticky;
+  inset-block-start: calc(var(--header-h) + var(--space-2));
+  z-index: 5;
+  display: flex;
+  gap: var(--space-2);
+  margin-block-end: var(--space-7);
+  padding: var(--space-2);
+  background: var(--surface-1);
+  border: var(--hairline);
+  border-radius: var(--radius);
+  width: fit-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.floorplan__switcher[hidden] {
+  display: none;
+}
+.floor-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--target);
+  padding-inline: var(--space-4);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-label);
+  font-size: var(--step-small);
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--ink-muted);
+}
+.floor-button__num {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+.floor-button:hover {
+  color: var(--ink);
+}
+.floor-button[aria-pressed='true'] {
+  color: var(--ink);
+  background: var(--surface-2);
+  border-color: var(--rule);
+}
+.floor-button[aria-pressed='true'] .floor-button__num {
+  color: var(--signal);
+}
+.floorplan__floor {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-5) var(--gutter);
+  padding-block: var(--space-7);
+  border-block-start: var(--hairline);
+}
+.floorplan__floor:first-child {
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+.floorplan.is-enhanced .floorplan__floor:not(.is-active) {
+  display: none;
+}
+.floorplan.is-enhanced .floorplan__floor {
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+.floorplan__outline {
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 2;
+  width: 100%;
+  height: auto;
+  align-self: start;
+}
+.floorplan__outline path {
+  fill: color-mix(in oklch, var(--wing), transparent 90%);
+  stroke: var(--wing);
+  stroke-width: 1;
+}
+.floorplan__outline .floorplan__outline-inner {
+  fill: none;
+  stroke: var(--rule);
+}
+.floorplan__outline-num {
+  font-family: var(--font-label);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  fill: var(--ink-muted);
+}
+.floorplan__floor-title {
+  grid-column: 4 / -1;
+  font-size: var(--step-h2);
+}
+.floorplan__floor-title:focus {
+  outline: none;
+}
+.floorplan__floor-title:focus-visible {
+  outline: 2px solid var(--signal);
+}
+.floorplan__theme {
+  display: block;
+  margin-block-start: var(--space-2);
+  font-family: var(--font-label);
+  font-size: var(--step-label);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--wing);
+}
+.floorplan__floor .hall-grid {
+  grid-column: 4 / -1;
+}
+
+.hall-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: var(--space-6) var(--gutter);
+}
+.hall-card {
+  position: relative;
+}
+.hall-card__link {
+  display: grid;
+  gap: var(--space-2);
+  height: 100%;
+  text-decoration: none;
+}
+.hall-card__plate {
+  margin-block-end: var(--space-3);
+}
+.hall-card__meta {
+  color: var(--wing);
+}
+.hall-card__title {
+  font-size: var(--step-h3);
+  width: fit-content;
+}
+.hall-card__link:hover .hall-card__title {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.hall-card__text {
+  font-size: var(--step-small);
+  color: var(--ink-muted);
+}
+.hall-card--stair .hall-card__link {
+  align-content: start;
+  padding: var(--space-5);
+  border: 1px dashed var(--rule);
+  border-radius: var(--radius);
+}
+.hall-card--sealed .scrim {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 0;
+  aspect-ratio: 16 / 10;
+  background: repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in oklch, var(--ink), transparent 92%) 14px 15px), var(--scrim);
+  pointer-events: none;
+}
+.sealed-list {
+  padding-block: var(--space-7);
+  border-block-start: var(--hairline);
+}
+
+@container floorplan (max-width: 48rem) {
+  .floorplan__outline {
+    grid-column: 1 / span 4;
+    grid-row: auto;
+  }
+  .floorplan__floor-title,
+  .floorplan__floor .hall-grid {
+    grid-column: 1 / -1;
+  }
+  .floor-button__name {
+    display: none;
+  }
+}

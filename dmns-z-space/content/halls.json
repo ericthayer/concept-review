@@ -37,7 +37,10 @@
       "floorLabel": "Floors 2–3",
       "wing": "wildlife",
       "status": "open",
-      "spansFloors": [2, 3],
+      "spansFloors": [
+        2,
+        3
+      ],
       "description": "Over 90 dioramas of animals and habitats from around the world.",
       "media": "hall-wildlife-halls"
     },
@@ -96,5 +99,38 @@
   "objectPlates": 3,
   "objectPlateName": "TODO: confirm with DMNS",
   "objectPlateMeta": "TODO: confirm with DMNS",
-  "objectPlateText": "TODO: confirm with DMNS"
+  "objectPlateText": "TODO: confirm with DMNS",
+  "floors": [
+    {
+      "floor": 3,
+      "name": "Floor 3",
+      "theme": "Deep Time & Culture",
+      "wing": "deep-time"
+    },
+    {
+      "floor": 2,
+      "name": "Floor 2",
+      "theme": "Life & Health",
+      "wing": "life"
+    },
+    {
+      "floor": 1,
+      "name": "Floor 1",
+      "theme": "Space",
+      "wing": "space"
+    },
+    {
+      "floor": 0,
+      "name": "Outdoor",
+      "theme": "City Park",
+      "wing": "plaza"
+    }
+  ],
+  "sealedHeading": "Sealed for renovation",
+  "upperLevel": {
+    "name": "Wildlife Halls, upper level",
+    "floor": 3,
+    "hall": "wildlife-halls",
+    "anchor": "upper-level"
+  }
 }

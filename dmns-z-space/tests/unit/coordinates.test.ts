@@ -2,6 +2,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 import {
+  type RoutePosition,
   buildRouteTable,
   morphKeyFor,
   normalizePath,
@@ -19,7 +20,7 @@ const table = buildRouteTable({
   theaters: content.theaters,
 });
 
-const must = (path: string) => {
+const must = (path: string): RoutePosition => {
   const p = positionFor(table, path);
   assert.ok(p, `missing ${path}`);
   return p;

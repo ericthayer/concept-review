@@ -1,0 +1,192 @@
+/*
+ * "After Hours" tokens. The building is dark; objects are lit.
+ * No hard-coded color, type or motion values outside this file.
+ */
+@font-face {
+  font-family: 'Newsreader Display';
+  src: url('/fonts/newsreader-display.woff2') format('woff2');
+  font-weight: 300 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('/fonts/newsreader-text.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Jost';
+  src: url('/fonts/jost.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+/* Metric-matched fallbacks (measured against Liberation Serif/Sans, Times/Arial-compatible) to hold CLS. */
+@font-face {
+  font-family: 'Newsreader Display Fallback';
+  src: local('Times New Roman'), local('Liberation Serif'), local('Times');
+  size-adjust: 111.7%;
+  ascent-override: 65.8%;
+  descent-override: 23.7%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Newsreader Fallback';
+  src: local('Times New Roman'), local('Liberation Serif'), local('Times');
+  size-adjust: 105.4%;
+  ascent-override: 69.7%;
+  descent-override: 25.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Jost Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 95.5%;
+  ascent-override: 112%;
+  descent-override: 39.3%;
+  line-gap-override: 0%;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --surface-0: #0b0c0e;
+  --surface-1: #141619;
+  --surface-2: #1d2024;
+  --ink: #f2efe8;
+  --ink-muted: #b9b4aa;
+  --rule: #2e3237;
+  --light-warm: #ffd9a0;
+  --accent-ticket: #f0ad00;
+  --on-ticket: #0b0c0e;
+  /* Gold as a line or dot (focus ring, "you are here"); deepened in Daylight to hold 3:1. */
+  --signal: var(--accent-ticket);
+  --scrim: rgb(11 12 14 / 0.72);
+  --header-glass: rgb(11 12 14 / 0.78);
+
+  /* DMNS palette → wayfinding */
+  --dmns-green: #8fc229;
+  --dmns-blue: #00a3f2;
+  --dmns-orange: #f4911e;
+  --dmns-purple: #872175;
+  --dmns-red: #b31f17;
+  --dmns-royal: #004aa8;
+  --dmns-wildlife: #779d2c;
+
+  --wing-space: var(--dmns-blue);
+  --wing-life: var(--dmns-green);
+  --wing-deep-time: var(--dmns-orange);
+  --wing-wildlife: var(--dmns-wildlife);
+  --wing-special: color-mix(in oklch, var(--dmns-purple), white 35%);
+  --wing-theaters: color-mix(in oklch, var(--dmns-royal), white 35%);
+  --wing-science: var(--ink-muted);
+  --wing-plaza: var(--dmns-green);
+  --wing-atrium: var(--ink);
+  --wing-editorial: var(--ink-muted);
+  --wing-sealed: var(--ink-muted);
+  --wing: var(--wing-atrium);
+
+  /* Type */
+  --font-display: 'Newsreader Display', 'Newsreader Display Fallback', 'Times New Roman', serif;
+  --font-serif: 'Newsreader', 'Newsreader Fallback', 'Times New Roman', serif;
+  --font-label: 'Jost', 'Jost Fallback', Arial, sans-serif;
+  --step-display: clamp(3rem, 1.6rem + 7vw, 9rem);
+  --step-display-long: clamp(2.5rem, 1.4rem + 4.6vw, 6rem);
+  --step-h1: clamp(2.5rem, 1.8rem + 3vw, 4.5rem);
+  --step-h2: clamp(1.75rem, 1.4rem + 1.4vw, 2.625rem);
+  --step-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-label: 0.8125rem;
+  --step-small: 0.9375rem;
+  --tracking-display: -0.02em;
+  --tracking-label: 0.08em;
+  --leading-body: 1.55;
+  --measure: 66ch;
+
+  /* Space & shape */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --page-max: 90rem;
+  --radius: 4px;
+  --hairline: 1px solid var(--rule);
+  --header-h: 4.25rem;
+  --target: 2.75rem;
+
+  /* Motion (see docs/motion-spec.md) */
+  --ease-walk: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-enter: 720ms;
+  --dur-exit: 600ms;
+  --dur-lateral: 640ms;
+  --dur-stairs: 700ms;
+  --dur-calm: 150ms;
+  --dur-lights: 300ms;
+  --dur-ui: 200ms;
+  --vt-origin-x: 50vw;
+  --vt-origin-y: 50vh;
+}
+
+/* Daylight: the museum with the house lights on. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    color-scheme: light;
+    --surface-0: #f4f1ea;
+    --surface-1: #ebe6dc;
+    --surface-2: #fbfaf6;
+    --ink: #17191c;
+    --ink-muted: #4d4940;
+    --rule: #cbc4b6;
+    --scrim: rgb(244 241 234 / 0.78);
+    --header-glass: rgb(244 241 234 / 0.86);
+    --wing-space: color-mix(in oklch, var(--dmns-blue), black 38%);
+    --wing-life: color-mix(in oklch, var(--dmns-green), black 50%);
+    --wing-deep-time: color-mix(in oklch, var(--dmns-orange), black 45%);
+    --wing-wildlife: color-mix(in oklch, var(--dmns-wildlife), black 45%);
+    --wing-special: var(--dmns-purple);
+    --wing-theaters: var(--dmns-royal);
+    --wing-plaza: color-mix(in oklch, var(--dmns-green), black 50%);
+    --signal: color-mix(in oklch, var(--accent-ticket), black 48%);
+  }
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+  --surface-0: #f4f1ea;
+  --surface-1: #ebe6dc;
+  --surface-2: #fbfaf6;
+  --ink: #17191c;
+  --ink-muted: #4d4940;
+  --rule: #cbc4b6;
+  --scrim: rgb(244 241 234 / 0.78);
+  --header-glass: rgb(244 241 234 / 0.86);
+  --wing-space: color-mix(in oklch, var(--dmns-blue), black 38%);
+  --wing-life: color-mix(in oklch, var(--dmns-green), black 50%);
+  --wing-deep-time: color-mix(in oklch, var(--dmns-orange), black 45%);
+  --wing-wildlife: color-mix(in oklch, var(--dmns-wildlife), black 45%);
+  --wing-special: var(--dmns-purple);
+  --wing-theaters: var(--dmns-royal);
+  --wing-plaza: color-mix(in oklch, var(--dmns-green), black 50%);
+  --signal: color-mix(in oklch, var(--accent-ticket), black 48%);
+}
+
+[data-wing='space'] { --wing: var(--wing-space); }
+[data-wing='life'] { --wing: var(--wing-life); }
+[data-wing='deep-time'] { --wing: var(--wing-deep-time); }
+[data-wing='wildlife'] { --wing: var(--wing-wildlife); }
+[data-wing='special'] { --wing: var(--wing-special); }
+[data-wing='theaters'] { --wing: var(--wing-theaters); }
+[data-wing='science'] { --wing: var(--wing-science); }
+[data-wing='plaza'] { --wing: var(--wing-plaza); }
+[data-wing='atrium'] { --wing: var(--wing-atrium); }
+[data-wing='editorial'] { --wing: var(--wing-editorial); }
+[data-wing='sealed'] { --wing: var(--wing-sealed); }

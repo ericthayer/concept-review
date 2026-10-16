@@ -1,0 +1,54 @@
+/* Editorial rooms: Visit, Programs, School Programs, Behind the Glass, About, Support. */
+.editorial {
+  container: editorial / inline-size;
+}
+.room-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 0 var(--gutter);
+}
+.room-list__item {
+  padding-block: var(--space-5) var(--space-6);
+  border-block-start: var(--hairline);
+}
+.room-list__name {
+  font-size: var(--step-h3);
+  margin-block-end: var(--space-3);
+}
+.room-list__item p {
+  color: var(--ink-muted);
+  max-width: var(--measure);
+}
+.room-list__item p + p {
+  margin-block-start: var(--space-3);
+}
+.collections {
+  margin-block-end: var(--space-8);
+}
+.drawer-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-2);
+}
+.drawer-list__item {
+  display: flex;
+  align-items: center;
+  min-height: 4rem;
+  padding-inline: var(--space-4);
+  background: var(--surface-1);
+  border-inline-start: 2px solid var(--wing-science);
+  font-family: var(--font-label);
+  font-weight: 500;
+}
+.link-external {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* "Basement" treatment for Behind the Glass: lower ceiling, cooler, workroom light. */
+.page-basement {
+  --surface-0: color-mix(in oklch, #0b0c0e, #0a1016 40%);
+}
+.page-basement .page-header {
+  border-block-end-style: dashed;
+}

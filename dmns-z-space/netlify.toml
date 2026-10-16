@@ -1,0 +1,7 @@
+# For a separate Netlify site with base directory "dmns-z-space".
+# The repository-root netlify.toml publishes the concept-review example and is unrelated.
+[build]
+  command = "npm ci && npm run build"
+  publish = "dist"
+[build.environment]
+  NODE_VERSION = "22"

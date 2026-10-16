@@ -1,0 +1,309 @@
+/* The Atrium sequence (§7). */
+.arrival {
+  position: relative;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--space-5);
+  min-height: min(88svh, 60rem);
+  margin-inline: calc(var(--gutter) * -1);
+  padding: var(--space-9) var(--gutter);
+  text-align: center;
+  isolation: isolate;
+  container: arrival / inline-size;
+}
+.arrival__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 46% 52% at 50% 46%, color-mix(in oklch, var(--light-warm), transparent 86%), transparent 72%);
+}
+.arrival__title {
+  max-width: 13ch;
+}
+.arrival__hours {
+  color: var(--ink-muted);
+}
+.arrival__break {
+  display: none;
+}
+
+/* Three doorways */
+.doorways {
+  padding-block: var(--space-8);
+  container: doorways / inline-size;
+}
+.doorways__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gutter);
+  perspective: 1400px;
+}
+.doorway {
+  display: block;
+  height: 100%;
+}
+.doorway__portal {
+  position: relative;
+  display: grid;
+  align-content: end;
+  gap: var(--space-2);
+  min-height: clamp(22rem, 42cqi, 34rem);
+  height: 100%;
+  padding: var(--space-6) var(--space-5);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  border-block-end: 2px solid var(--wing);
+  /* An arch is architecture, not a card: the one shape exempt from the 4px radius rule. */
+  border-radius: 999px 999px var(--radius) var(--radius);
+  overflow: hidden;
+  isolation: isolate;
+}
+.doorway__room {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, color-mix(in oklch, var(--wing), var(--surface-0) 82%), var(--surface-0) 70%);
+}
+.doorway__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 45% at 50% 55%, color-mix(in oklch, var(--light-warm), transparent 82%), transparent 70%);
+  opacity: 0.35;
+  transition: opacity var(--dur-lights) var(--ease-out);
+}
+.doorway__portal:hover .doorway__glow,
+.doorway__portal:focus-visible .doorway__glow {
+  opacity: 1;
+}
+.doorway__index {
+  font-family: var(--font-label);
+  font-size: var(--step-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--wing);
+}
+.doorway__title {
+  font-family: var(--font-display);
+  font-weight: 360;
+  font-size: var(--step-h2);
+  letter-spacing: var(--tracking-display);
+  line-height: 1.05;
+}
+.doorway__lede {
+  color: var(--ink-muted);
+  font-size: var(--step-small);
+  max-width: 28ch;
+}
+.doorways__item:first-child .doorway__portal {
+  transform: rotateY(6deg);
+  transform-origin: right center;
+}
+.doorways__item:last-child .doorway__portal {
+  transform: rotateY(-6deg);
+  transform-origin: left center;
+}
+@container doorways (max-width: 44rem) {
+  .doorways__list {
+    grid-template-columns: 1fr;
+  }
+  .doorway__portal {
+    min-height: 16rem;
+    border-radius: 12rem 12rem var(--radius) var(--radius);
+  }
+  .doorways__item .doorway__portal {
+    transform: none;
+  }
+}
+
+/* Now showing */
+.showing {
+  padding-block: var(--space-8);
+  border-block-start: var(--hairline);
+  container: showing / inline-size;
+}
+.showing__now {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: var(--gutter);
+}
+.showing__now .showing__item:only-child .plate {
+  aspect-ratio: 21 / 9;
+}
+.showing__coming {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--gutter);
+  margin-block-start: var(--space-7);
+}
+.showing__coming .showing__item {
+  grid-column: span 2;
+}
+.showing__link {
+  display: grid;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+.showing__link .plate {
+  margin-block-end: var(--space-3);
+}
+.showing__item--coming .plate {
+  aspect-ratio: 21 / 9;
+}
+.showing__status {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: var(--step-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--wing-special);
+}
+.showing__name {
+  font-size: var(--step-h3);
+  line-height: 1.2;
+}
+.showing__item--now .showing__name {
+  font-size: var(--step-h2);
+}
+.showing__date {
+  font-family: var(--font-label);
+  font-size: var(--step-small);
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+@container showing (max-width: 44rem) {
+  .showing__now,
+  .showing__coming {
+    grid-template-columns: 1fr;
+  }
+  .showing__coming .showing__item {
+    grid-column: auto;
+  }
+}
+
+/* Notices strip */
+.notices-strip {
+  padding-block: var(--space-5);
+  border-block: var(--hairline);
+  font-family: var(--font-label);
+}
+.notices-strip a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+}
+
+/* Event corridor */
+.events {
+  padding-block: var(--space-8);
+}
+.corridor {
+  display: grid;
+  gap: var(--space-4);
+  container: corridor / inline-size;
+}
+.corridor__controls {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+.corridor__controls[hidden] {
+  display: none;
+}
+.corridor__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(16rem, 30%);
+  gap: var(--gutter);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  padding-block-end: var(--space-4);
+  scrollbar-color: var(--rule) transparent;
+}
+.corridor__item {
+  scroll-snap-align: start;
+  padding: var(--space-5);
+  background: var(--surface-1);
+  border-block-start: 2px solid var(--rule);
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  min-height: 12rem;
+}
+.corridor__date {
+  color: var(--ink-muted);
+}
+.corridor__name {
+  font-size: var(--step-h3);
+}
+.corridor__where {
+  font-size: var(--step-small);
+  color: var(--ink-muted);
+}
+.events__more {
+  margin-block-start: var(--space-4);
+  font-family: var(--font-label);
+}
+.events__more a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+}
+@container corridor (max-width: 40rem) {
+  .corridor__track {
+    grid-auto-columns: 82%;
+  }
+}
+
+/* Behind the Glass teaser + visit block */
+.glass-teaser {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: end;
+  padding-block: var(--space-8);
+  border-block-start: var(--hairline);
+  container: teaser / inline-size;
+}
+.glass-teaser__plate {
+  grid-column: 1 / span 7;
+}
+.glass-teaser__text {
+  grid-column: 8 / span 5;
+}
+.glass-teaser .lede {
+  margin-block-end: var(--space-5);
+}
+.visit-block {
+  padding-block: var(--space-8);
+  border-block-start: var(--hairline);
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-6) var(--gutter);
+  margin: 0 0 var(--space-6);
+}
+.facts dt {
+  color: var(--ink-muted);
+  margin-block-end: var(--space-2);
+}
+.facts dd {
+  margin: 0;
+  font-size: var(--step-h3);
+  line-height: 1.35;
+}
+@container teaser (max-width: 48rem) {
+  .glass-teaser__plate,
+  .glass-teaser__text {
+    grid-column: 1 / -1;
+  }
+}
+@container arrival (max-width: 36rem) {
+  .arrival__break {
+    display: inline;
+  }
+  .arrival__hours [aria-hidden] {
+    display: none;
+  }
+}

@@ -1,0 +1,298 @@
+/* Inside a hall: hero in darkness, dioramas, vitrines, exit doorways. */
+.hall-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  align-items: end;
+  gap: var(--gutter);
+  min-height: min(92svh, 64rem);
+  margin-inline: calc(var(--gutter) * -1);
+  padding: var(--space-8) var(--gutter) var(--space-7);
+  isolation: isolate;
+  container: hero / inline-size;
+}
+.hall-hero__spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(ellipse 40% 46% at 50% 42%, color-mix(in oklch, var(--light-warm), transparent 88%), transparent 72%);
+}
+.hall-hero__plate {
+  grid-column: 4 / span 6;
+  grid-row: 1;
+  align-self: end;
+}
+.hall-hero__text {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.hall-hero__meta {
+  color: var(--wing);
+  margin-block-end: var(--space-3);
+}
+.hall-hero__title {
+  max-width: 16ch;
+}
+.hall-hero__title--long {
+  font-size: var(--step-display-long);
+  max-width: 22ch;
+}
+@container hero (max-width: 48rem) {
+  .hall-hero__plate {
+    grid-column: 1 / -1;
+  }
+}
+
+.hall__notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+  border-block: var(--hairline);
+  font-family: var(--font-label);
+  font-size: var(--step-small);
+}
+
+/* Diorama: backdrop, specimen, label card on the 12-column wall grid (label on 8–11). */
+.diorama {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: center;
+  min-height: 70svh;
+  padding-block: var(--space-9);
+  isolation: isolate;
+  container: diorama / inline-size;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 42rem;
+}
+.diorama__backdrop {
+  position: absolute;
+  inset: 8% 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 50% 60% at 30% 50%, color-mix(in oklch, var(--wing), transparent 90%), transparent 70%),
+    linear-gradient(to bottom, transparent, var(--surface-1) 50%, transparent);
+}
+.diorama__specimen {
+  grid-column: 1 / span 6;
+  grid-row: 1;
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+.diorama__beam {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 42% at 50% 52%, color-mix(in oklch, var(--light-warm), transparent 84%), transparent 70%);
+}
+.diorama__label {
+  grid-column: 8 / span 4;
+  grid-row: 1;
+}
+.diorama--upper .diorama__label {
+  grid-column: 8 / span 4;
+}
+@container diorama (max-width: 48rem) {
+  .diorama__specimen {
+    display: none;
+  }
+  .diorama__label {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Vitrines */
+.vitrines {
+  padding-block: var(--space-8);
+  border-block-start: var(--hairline);
+}
+.vitrines__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--space-7) var(--gutter);
+}
+.vitrine {
+  display: grid;
+  gap: var(--space-4);
+  container: vitrine / inline-size;
+}
+.vitrine__case {
+  margin: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+.vitrine__plate {
+  aspect-ratio: 4 / 5;
+}
+.vitrine__open[hidden] {
+  display: none;
+}
+.vitrine__open {
+  justify-self: start;
+  min-height: var(--target);
+  padding-inline: var(--space-4);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  font-family: var(--font-label);
+  font-size: var(--step-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  cursor: pointer;
+}
+.vitrine__open:hover {
+  border-color: var(--ink-muted);
+}
+.vitrine__dialog {
+  width: min(64rem, calc(100vw - 2 * var(--gutter)));
+  max-height: calc(100dvh - 2 * var(--space-5));
+  padding: 0;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: var(--hairline);
+  border-radius: var(--radius);
+  container: dialog / inline-size;
+}
+.vitrine__dialog::backdrop {
+  background: var(--scrim);
+  backdrop-filter: blur(6px);
+}
+.vitrine__dialog-inner {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  align-items: end;
+  padding: var(--gutter);
+}
+.vitrine__dialog-plate {
+  grid-column: 1 / span 7;
+  aspect-ratio: 4 / 5;
+}
+.vitrine__dialog .wall-label {
+  grid-column: 8 / span 5;
+}
+.vitrine__dialog form {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+}
+@container dialog (max-width: 40rem) {
+  .vitrine__dialog-plate,
+  .vitrine__dialog .wall-label {
+    grid-column: 1 / -1;
+  }
+  .vitrine__dialog-plate {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Exit doorways */
+.exit-doors {
+  padding-block: var(--space-8) 0;
+  border-block-start: var(--hairline);
+  container: exits / inline-size;
+}
+.exit-doors > ul {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: var(--gutter);
+  align-items: stretch;
+}
+.exit-door {
+  display: grid;
+  gap: var(--space-2);
+  align-content: center;
+  height: 100%;
+  min-height: 8rem;
+  padding: var(--space-5);
+  text-decoration: none;
+  border: var(--hairline);
+  border-block-end: 2px solid var(--wing);
+  border-radius: var(--radius);
+}
+.exit-door:hover {
+  background: var(--surface-1);
+}
+.exit-doors__item--next .exit-door {
+  text-align: end;
+  justify-items: end;
+}
+.exit-door__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--ink-muted);
+}
+.exit-door__name {
+  font-size: var(--step-h3);
+}
+.exit-door__floor {
+  color: var(--wing);
+}
+.exit-door--atrium {
+  justify-items: center;
+  text-align: center;
+  border-block-end-color: var(--signal);
+}
+.exit-doors__directory {
+  margin-block-start: var(--space-5);
+  text-align: center;
+  font-family: var(--font-label);
+}
+.exit-doors__directory a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+}
+@container exits (max-width: 44rem) {
+  .exit-doors > ul {
+    grid-template-columns: 1fr;
+  }
+  .exit-doors__item--empty {
+    display: none;
+  }
+  .exit-doors__item--next .exit-door {
+    text-align: start;
+    justify-items: start;
+  }
+}
+
+/* Sealed hall */
+.sealed-hall {
+  position: relative;
+  display: grid;
+  min-height: 50svh;
+  place-items: center;
+  margin-block: var(--space-7);
+  padding: var(--space-8) var(--gutter);
+  border: 1px dashed var(--rule);
+  isolation: isolate;
+}
+.sealed-hall__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(135deg, transparent 0 18px, color-mix(in oklch, var(--ink), transparent 93%) 18px 19px), var(--scrim);
+  backdrop-filter: blur(8px);
+}
+.sealed-hall__message {
+  display: grid;
+  gap: var(--space-4);
+  text-align: center;
+  justify-items: center;
+}
+.sealed-hall__text {
+  font-size: var(--step-h2);
+  max-width: 22ch;
+  line-height: 1.2;
+}
+.sealed-hall__floor {
+  color: var(--ink-muted);
+}
+.hall__concept-note {
+  font-family: var(--font-label);
+  font-size: var(--step-label);
+  color: var(--ink-muted);
+  text-align: center;
+}

@@ -22,7 +22,7 @@ describe('content loaders', () => {
   });
 
   it('rejects malformed halls', () => {
-    assert.throws(() => parseHalls({ halls: [{ slug: 'x' }], objectPlates: 1 }), ContentError);
+    assert.throws(() => parseHalls({ halls: [{ slug: 'x' }], floors: [], objectPlates: 1 }), ContentError);
     assert.throws(() => parseHalls({ halls: [{ slug: 'Bad Slug', name: 'n', floor: 1, floorLabel: 'f', wing: 'space', status: 'open', description: 'd', media: 'm' }] }), ContentError);
   });
 
