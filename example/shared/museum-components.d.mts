@@ -1,0 +1,17 @@
+import type {MuseumExhibition} from './museum-types';
+export function escapeHTML(value:unknown):string;
+export function icon(name?:string,size?:number):string;
+export function route(concept:'a'|'b',path?:string):string;
+export function action(label:string,url:string,secondary?:boolean):string;
+export function SiteHeader(concept:'a'|'b',page:string):string;
+export function SiteFooter(concept:'a'|'b'):string;
+export function ExhibitionCard(concept:'a'|'b',item:MuseumExhibition,index?:number):string;
+export function ExhibitionIndex(concept:'a'|'b',compact?:boolean):string;
+export function ExhibitionDetail(concept:'a'|'b',item:MuseumExhibition):string;
+export function VisitStrip(concept:'a'|'b'):string;
+export function HomeA():string;
+export function HomeB():string;
+export function OrbitArt():string;
+export function VisitPage(concept:'a'|'b'):string;
+export function PurchasePage(concept:'a'|'b'):string;
+export function MuseumDialogs(concept:'a'|'b'):string;

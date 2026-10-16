@@ -25,6 +25,28 @@ Example requests:
 The concept skill hands off to the presentation skill. The presentation skill returns
 to intake when the brief or concepts are missing. Neither treats feedback as approval.
 
+## Current example: DMNS redesign study
+
+The supplied briefs are retained in `example/briefs/`:
+
+- **A — Walk Into Wonder:** architectural imagery, gallery-like reading surfaces,
+  layered depth and native transitions.
+- **B — Wonder, Panel by Panel:** illustrated comic-grid compositions, finite reveals,
+  connected panels and native transitions.
+
+Each has Homepage, Purchase, Visit, an exhibition index, and three exhibition details.
+Both share factual content and practical functionality. This replaces the portfolio
+demo; the previous example remains in git history.
+
+Edit the named renderers in `example/shared/museum-components.mjs`, content in
+`museum-data.js`, and each concept's stylesheet. The master is
+`example/templates/museum-master.html`. Run `npm run render:example` to regenerate
+tracked HTML; `npm run build` runs this automatically. Edit renderers rather than
+regenerated HTML. The skill's generic white-label scaffold remains unchanged.
+
+The B reference video was not attached; its written description was used.
+See `example/ASSET_SOURCES.md` and `example/VERIFICATION.md` for provenance and limits.
+
 ## Run the example
 
 Use Node 22 or newer. There are no runtime or npm package dependencies.
@@ -88,7 +110,7 @@ skill and code travel together without maintaining duplicate templates:
       contracts/review.d.ts
       scripts/{scaffold,validate,build}.mjs
       project/                    # white-label concept scaffold + config
-example/                          # Eric Thayer example, separate from template
+example/                          # DMNS redesign study, separate from template
 tests/
 netlify.toml
 ```
@@ -150,6 +172,6 @@ Preserve the approved comparison visual language. Branding and copy are configur
 changes to typography, spacing or layout require a requested design change. Keep concept
 styles isolated and keep deliberate user edits intact.
 
-Reusable source is covered by the repository license. Example portfolio imagery and
+Reusable source is covered by the repository license. Example museum imagery and
 fonts remain subject to their original rights; see `example/ASSET_SOURCES.md`. They are
 not included in new client scaffolds and should not be reused as client assets.

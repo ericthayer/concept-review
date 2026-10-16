@@ -59,7 +59,7 @@ test('example keeps both complete concepts and a compatible form',()=>{
     const source=readFileSync(file,'utf8');
     const urls=[...source.matchAll(/(?:src|href)=["']([^"']+)["']/g),...source.matchAll(/(?:from\s+|import\s*)["']([^"']+)["']/g),...source.matchAll(/url\(["']?([^\s)'";]+)["']?\)/g)].map(m=>m[1]);
     for(const url of urls) {
-      if(/^(?:https?:|mailto:|data:|#)/.test(url)||url.includes('${')) continue;
+      if(/^(?:https?:|mailto:|tel:|data:|#)/.test(url)||url.includes('${')) continue;
       const clean=url.split(/[?#]/)[0];if(!clean)continue;
       const target=clean.startsWith('/')?path.join(out,clean):path.resolve(path.dirname(file),clean);
       assert.ok(existsSync(target)||existsSync(path.join(target,'index.html')),`${path.relative(out,file)} -> ${url}`);

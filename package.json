@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": {"node": ">=22"},
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "node .agents/skills/artifact-template-concept-review/assets/source/scripts/build.mjs --project example --out example/dist --release",
     "scaffold": "node .agents/skills/artifact-template-concept-review/assets/source/scripts/scaffold.mjs",
     "test": "node --test tests/*.test.mjs",
-    "check": "npm test && npm run build"
+    "check": "npm run render:example && npm test && npm run build",
+    "render:example": "node scripts/render-dmns.mjs",
+    "prebuild": "npm run render:example"
   }
 }

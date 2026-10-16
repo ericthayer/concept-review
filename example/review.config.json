@@ -1,48 +1,48 @@
 {
   "schemaVersion": 1,
-  "id": "ethayer-portfolio-directions",
-  "revision": "01",
+  "id": "dmns-redesign-directions",
+  "revision": "02",
   "brand": {
-    "name": "ERIC THAYER",
-    "mark": "et",
-    "subtitle": "PORTFOLIO EXPLORATIONS",
-    "footer": "ERIC THAYER / DESIGN ENGINEER",
-    "website": "https://ethayer.design/"
+    "name": "DENVER MUSEUM OF NATURE & SCIENCE",
+    "mark": "dm",
+    "subtitle": "INDEPENDENT REDESIGN STUDY",
+    "footer": "DMNS / TWO DESIGN DIRECTIONS",
+    "website": "https://www.dmns.org/"
   },
-  "eyebrow": "DESIGN STUDY / TWO DIRECTIONS",
+  "eyebrow": "DESIGN STUDY / CURIOUS BY NATURE",
   "heading": [
-    "One portfolio.",
-    "Two ways in."
+    "One museum.",
+    "Two ways to wonder."
   ],
   "introduction": [
-    "A cinematic expression of the work.",
-    "A thoughtful workspace to explore it."
+    "An architectural journey into discovery.",
+    "A living comic strip of curiosity."
   ],
   "concepts": [
     {
       "id": "a",
       "slug": "concept-a",
-      "title": "The Interactive Reel",
-      "tagline": "Cinematic. Expressive. Authored.",
-      "previewLabel": "ethayer.design / interactive reel",
-      "description": "Bold typography, choreographed reveals, and a horizontal project reel. Built for a memorable first impression.",
-      "linkLabel": "Explore the reel",
+      "title": "Walk Into Wonder",
+      "tagline": "Architectural. Immersive. Deliberate.",
+      "previewLabel": "DMNS / walk into wonder",
+      "description": "Gallery-scale imagery, layered depth, and quiet interpretation. An invitation to enter the museum before you arrive.",
+      "linkLabel": "Walk into wonder",
       "attributes": [
-        "GRAPHITE + SIGNAL ORANGE",
-        "MOTION-LED"
+        "MINERAL WHITES + MUSEUM GREEN",
+        "SPATIAL STORYTELLING"
       ]
     },
     {
       "id": "b",
       "slug": "concept-b",
-      "title": "Eric’s Workspace",
-      "tagline": "Focused. Useful. Familiar.",
-      "previewLabel": "ethayer.design / workspace",
-      "description": "Application navigation, searchable projects, and contextual previews. Built for a closer look at the work.",
-      "linkLabel": "Enter the workspace",
+      "title": "Wonder, Panel by Panel",
+      "tagline": "Expressive. Connected. Curious.",
+      "previewLabel": "DMNS / wonder, panel by panel",
+      "description": "An illustrated comic grid with expanding discoveries, expressive type, and playful connections between worlds.",
+      "linkLabel": "Follow your curiosity",
       "attributes": [
-        "WARM NEUTRALS + INDIGO",
-        "EXPLORATION-LED"
+        "INK + PAPER + MUSEUM GREEN",
+        "PANEL-LED DISCOVERY"
       ]
     }
   ]
