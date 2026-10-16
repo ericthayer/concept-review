@@ -1,0 +1,5 @@
+[
+  { "slug": "gates-planetarium", "name": "Gates Planetarium", "description": null, "ticketsUrl": "https://www.dmns.org/purchase/tickets/?category=planetarium", "pop": "blue", "art": "scene-dome" },
+  { "slug": "sturm-infinity-theater", "name": "Sturm Infinity Theater", "description": "Giant-screen films, lectures and evening events. Separate ticket.", "ticketsUrl": "https://www.dmns.org/purchase/tickets/?category=sturm-theater", "pop": "blue", "art": "scene-screen" },
+  { "slug": "laser-shows", "name": "Laser Shows", "description": null, "ticketsUrl": "https://www.dmns.org/purchase/tickets/?category=laser-shows", "pop": "magenta", "art": "scene-laser" }
+]

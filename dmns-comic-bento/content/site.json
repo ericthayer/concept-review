@@ -1,0 +1,112 @@
+{
+  "name": "Denver Museum of Nature & Science",
+  "shortName": "DMNS",
+  "liveOrigin": "https://www.dmns.org",
+  "sourceDate": "2026-10-16",
+  "address": {
+    "street": "2001 Colorado Blvd.",
+    "city": "Denver",
+    "region": "CO",
+    "postal": "80205"
+  },
+  "hours": {
+    "open": "09:00",
+    "close": "17:00",
+    "fridayLateClose": "21:00",
+    "closedDates": ["12-25", "08-26"],
+    "timeZone": "America/Denver",
+    "summary": "9 a.m.–5 p.m. daily",
+    "fridaySummary": "9 a.m.–9 p.m. most Fridays",
+    "closedSummary": "Closed Dec. 25 and Aug. 26"
+  },
+  "outbound": {
+    "tickets": "https://www.dmns.org/purchase/",
+    "membership": "https://www.dmns.org/membership/",
+    "donate": "https://www.dmns.org/support/ways-to-give/",
+    "login": "https://www.dmns.org/login",
+    "search": "https://www.dmns.org/search/",
+    "catalyst": "https://www.dmns.org/catalyst/",
+    "digitalCollections": "https://dmns.netx.net/portals/public/#page/home"
+  },
+  "visitLinks": [
+    { "label": "Getting Here", "url": "https://www.dmns.org/visit/getting-here/" },
+    { "label": "Accessibility", "url": "https://www.dmns.org/visit/accessibility/" },
+    { "label": "Pricing & Discounts", "url": "https://www.dmns.org/visit/pricing-and-discounts/" },
+    { "label": "Eat & Shop", "url": "https://www.dmns.org/visit/eat-shop/" },
+    { "label": "Sturm Family Wing", "url": "https://www.dmns.org/visit/sturm-family-wing/" },
+    { "label": "In the Community", "url": "https://www.dmns.org/visit/in-the-community/" }
+  ],
+  "sturmWing": {
+    "tagline": "Part curiosity lab. Part classroom. Part cultural commons.",
+    "spaces": [
+      { "name": "Sturm Family Plaza", "detail": "Free, open daily 5 a.m.–11 p.m., T.REX Cafe, community events" },
+      { "name": "Sturm Infinity Theater", "detail": "Giant-screen films, lectures and evening events; separate ticket" },
+      { "name": "Sturm Infinity Lobby", "detail": "Events only" }
+    ]
+  },
+  "programLinks": [
+    { "label": "Upcoming Events", "url": "https://www.dmns.org/purchase/tickets/?category=events", "category": "events" },
+    { "label": "Free Days and Nights", "url": "https://www.dmns.org/programs-and-events/freedays/", "category": "events" },
+    { "label": "Science Lounge", "url": "https://www.dmns.org/programs-and-events/science-lounge/", "category": "events" },
+    { "label": "Science Camps", "url": "https://www.dmns.org/programs-and-events/science-camps/", "category": "kids" },
+    { "label": "Discovery Station", "url": "https://www.dmns.org/programs-and-events/discovery-station/", "category": "kids" },
+    { "label": "Birthday Parties", "url": "https://www.dmns.org/programs-and-events/host-an-event/birthday-parties/", "category": "host" },
+    { "label": "Host an Event", "url": "https://www.dmns.org/programs-and-events/host-an-event/", "category": "host" }
+  ],
+  "learnLinks": [
+    { "label": "Onsite", "url": "https://www.dmns.org/learn/onsite/" },
+    { "label": "Offsite", "url": "https://www.dmns.org/learn/offsite/" },
+    { "label": "Virtual", "url": "https://www.dmns.org/learn/virtual/" },
+    { "label": "Teacher Professional Development", "url": "https://www.dmns.org/learn/tpd/" },
+    { "label": "Scholarships", "url": "https://www.dmns.org/learn/scholarships/" }
+  ],
+  "scienceLinks": [
+    { "label": "Collections", "url": "https://www.dmns.org/science/collections/" },
+    { "label": "Labs", "url": "https://www.dmns.org/science/labs/" },
+    { "label": "Research", "url": "https://www.dmns.org/science/research/" },
+    { "label": "People", "url": "https://www.dmns.org/science/science-staff/" },
+    { "label": "Publications", "url": "https://publications.dmns.org/" }
+  ],
+  "aboutLinks": [
+    { "label": "Leadership & Board", "url": "https://www.dmns.org/about/museum-leadership/" },
+    { "label": "Strategic Plan", "url": "https://www.dmns.org/about/strategic-plan/" },
+    { "label": "The Institute for Science & Policy", "url": "https://institute.dmns.org/" },
+    { "label": "Careers", "url": "https://www.dmns.org/about/careers/" },
+    { "label": "Internships", "url": "https://www.dmns.org/about/internships/" },
+    { "label": "Institutional Review Board", "url": "https://www.dmns.org/about/institutional-review-board/" },
+    { "label": "Catalyst Magazine", "url": "https://www.dmns.org/catalyst/" }
+  ],
+  "supportLinks": [
+    { "label": "Become a Member", "url": "https://www.dmns.org/membership/" },
+    { "label": "Volunteer", "url": "https://www.dmns.org/support/volunteer/" },
+    { "label": "Corporate Partners", "url": "https://www.dmns.org/support/corporate-partners/" },
+    { "label": "Ways to Give", "url": "https://www.dmns.org/support/ways-to-give/" },
+    { "label": "Legacy Giving", "url": "https://dmns.planmylegacy.org/" }
+  ],
+  "footer": {
+    "landAcknowledgment": "The Denver Museum of Nature & Science respectfully acknowledges that the land we are on today is the traditional and ancestral homelands of the Cheyenne, Arapaho and Ute Nations. We also acknowledge the 48 contemporary tribal nations historically tied to the lands that comprise what is now called Colorado but who now live in the American Southwest, the Great Plains and the Rocky Mountain Region.",
+    "nonprofit": "The Denver Museum of Nature & Science is a 501(c) 3 nonprofit organization.",
+    "credentials": [
+      { "label": "Supported by the Scientific and Cultural Facilities District (SCFD)", "url": "https://scfd.org/" },
+      { "label": "Charity Navigator Four Star", "url": "https://www.charitynavigator.org/index.cfm?bay=search.summary&orgid=3611" }
+    ],
+    "social": [
+      { "label": "Facebook", "url": "https://www.facebook.com/DMNSorg" },
+      { "label": "Instagram", "url": "https://www.instagram.com/denvermuseumns/" },
+      { "label": "Threads", "url": "https://www.threads.net/@denvermuseumns" },
+      { "label": "TikTok", "url": "https://www.tiktok.com/@denvermns" },
+      { "label": "YouTube", "url": "https://www.youtube.com/user/DMNSorg" },
+      { "label": "Bluesky", "url": "https://bsky.app/profile/denvermuseumns.bsky.social" }
+    ],
+    "links": [
+      { "label": "Conditions of Use", "url": "https://www.dmns.org/about/policies-and-permissions/#conditions" },
+      { "label": "Privacy Policy", "url": "https://www.dmns.org/about/policies-and-permissions/#privacypolicy" },
+      { "label": "Safe Spaces Policy", "url": "https://www.dmns.org/about/policies-and-permissions/#safepolicy" },
+      { "label": "Comment Policy", "url": "https://www.dmns.org/about/policies-and-permissions/#commentpolicy" },
+      { "label": "Press Room", "url": "https://www.dmns.org/press-room/" },
+      { "label": "Careers", "url": "https://www.dmns.org/about/careers/" },
+      { "label": "Contact Us", "url": "https://www.dmns.org/contact-us/" },
+      { "label": "Financials", "url": "https://www.dmns.org/about/museum-financials/" }
+    ]
+  }
+}
