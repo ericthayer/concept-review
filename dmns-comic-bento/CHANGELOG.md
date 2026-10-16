@@ -2,6 +2,22 @@
 
 Each entry is one step of the build order (§15). Every step ends with `npm run check` green.
 
+## Step 4: Boil and beats (2026-10-16)
+
+- Line art boils in three held frames (360ms cycle, `steps()`), only on screen, at most six
+  panels at once, paused when the tab is hidden; documentary panels never boil.
+- Beat strips play once in view (1100ms per beat), rest on the final beat, and replay on request.
+- Hover lift and faster boil are full-motion only.
+- `tests/e2e/motion.spec.ts`: boil and ink run at full motion; under reduced motion and Still
+  Panels, `getAnimations()` shows no transform, clip-path or stroke animation; Still Panels persists.
+
+## Step 3: Ink-in (2026-10-16)
+
+- Scroll-driven ink-in: gutters rule, panels drop in reading order, strokes draw through the
+  registered `--ink` property, fills snap, knockout caption words slap down one by one.
+- Panel-level `view()` ranges that finish by `entry 100%` (see `docs/motion-spec.md`).
+- Gated on scroll-timeline support, `prefers-reduced-motion` and Still Panels.
+
 ## Step 2: Static comic (2026-10-16)
 
 - Every route prerendered as plain, accessible HTML on the bento grid: Cover, 9 issue pages,

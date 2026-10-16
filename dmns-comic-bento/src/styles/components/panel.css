@@ -10,7 +10,6 @@
   color: var(--ink-text);
   border-radius: var(--panel-radius);
   overflow: hidden;
-  transition: translate 160ms var(--ease-camera);
 }
 .panel__art {
   position: relative;
@@ -81,8 +80,12 @@
 .panel:has(.panel__link) {
   cursor: pointer;
 }
+/* Hover lift is motion: full motion only, never under reduced motion or Still Panels. */
 @media (hover: hover) {
-  .panel:has(.panel__link):hover {
+  :root[data-motion='full']:not([data-still]) .panel {
+    transition: translate 160ms var(--ease-camera);
+  }
+  :root[data-motion='full']:not([data-still]) .panel:has(.panel__link):hover {
     translate: 0 -2px;
   }
 }

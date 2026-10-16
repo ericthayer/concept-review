@@ -1,1 +1,118 @@
-/* ink.css: filled in by later build steps (see CHANGELOG). */
+/* Step 3: ink-in. Spreads rule their gutters; panels drop, ink and slap their
+   captions as they enter. Everything is gated: without scroll-driven animation
+   support, with reduced motion or with Still Panels, nothing here applies and
+   every panel renders in its final state. Ranges end by "entry 100%", so a panel
+   that is fully on screen is always fully revealed. */
+
+.spread__grid > :nth-child(1) { --i: 0; }
+.spread__grid > :nth-child(2) { --i: 1; }
+.spread__grid > :nth-child(3) { --i: 2; }
+.spread__grid > :nth-child(4) { --i: 3; }
+.spread__grid > :nth-child(5) { --i: 4; }
+.spread__grid > :nth-child(6) { --i: 5; }
+.spread__grid > :nth-child(7) { --i: 6; }
+.spread__grid > :nth-child(8) { --i: 7; }
+.spread__grid > :nth-child(9) { --i: 8; }
+.spread__grid > :nth-child(10) { --i: 9; }
+.spread__grid > :nth-child(11) { --i: 10; }
+.spread__grid > :nth-child(12) { --i: 11; }
+.w[data-w='1'] { --w: 1; }
+.w[data-w='2'] { --w: 2; }
+.w[data-w='3'] { --w: 3; }
+.w[data-w='4'] { --w: 4; }
+.w[data-w='5'] { --w: 5; }
+.w[data-w='6'] { --w: 6; }
+.w[data-w='7'] { --w: 7; }
+.w[data-w='8'] { --w: 8; }
+.w[data-w='9'] { --w: 9; }
+.w[data-w='10'] { --w: 10; }
+.w[data-w='11'] { --w: 11; }
+.w[data-w='12'] { --w: 12; }
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    :root:not([data-still]):not([data-motion='reduced']) {
+      dmns-spread[data-ink='scroll'] {
+        view-timeline: --spread block;
+      }
+
+      /* 1. Gutters draw: the black ruling wipes in from the top-left over a paper sheet. */
+      dmns-spread[data-ink='scroll'] .spread__grid {
+        background: var(--paper-2);
+        border-radius: calc(var(--panel-radius) + 4px);
+      }
+      dmns-spread[data-ink='scroll'] .spread__grid::before {
+        animation: ink-rule linear both;
+        animation-timeline: --spread;
+        animation-range: entry 0% entry 40%;
+      }
+
+      /* 2. Panels drop, staggered in reading order. */
+      dmns-spread[data-ink='scroll'] dmns-panel {
+        animation: ink-drop linear both;
+        animation-timeline: view();
+        animation-range: entry calc(var(--i, 0) * 2%) entry calc(55% + var(--i, 0) * 2%);
+      }
+
+      /* 3. Art inks in: strokes draw, then fills snap on in one stepped frame. */
+      dmns-spread[data-ink='scroll'] .panel__art {
+        animation: ink-stroke linear both;
+        animation-timeline: view();
+        animation-range: entry 25% entry 90%;
+      }
+      dmns-spread[data-ink='scroll'] .art__fill {
+        animation: ink-fill steps(1, end) both;
+        animation-timeline: view();
+        animation-range: entry 25% entry 92%;
+      }
+
+      /* 4. Captions slap: knockout words stick down one at a time. */
+      dmns-spread[data-ink='scroll'] .knockout .w {
+        animation: ink-slap steps(1, end) both;
+        animation-timeline: view();
+        animation-range: entry 40% entry calc(48% + var(--w, 1) * 4%);
+      }
+
+      /* Cover stair: Specimen climbs in stepped poses as the spread scrolls. */
+      #spread-floors .stair-climber {
+        animation: stair-climb steps(4, jump-none) both;
+        animation-timeline: --spread;
+        animation-range: entry 30% exit 10%;
+      }
+    }
+  }
+}
+
+/* First spread: a short time-based entrance instead of scroll ink (it is already on screen). */
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-motion='full'] dmns-spread[data-ink='enter'] dmns-panel,
+  :root[data-motion='full'] #splash .splash__panel {
+    animation: ink-drop 300ms var(--ease-camera) both;
+    animation-delay: calc(var(--i, 0) * var(--stagger));
+  }
+}
+
+@keyframes ink-rule {
+  from { clip-path: inset(0 100% 100% 0 round calc(var(--panel-radius) + 4px)); }
+  to { clip-path: inset(0 0 0 0 round calc(var(--panel-radius) + 4px)); }
+}
+@keyframes ink-drop {
+  from { opacity: 0; scale: 0.96; translate: 0 12px; }
+  to { opacity: 1; scale: 1; translate: 0 0; }
+}
+@keyframes ink-stroke {
+  from { --ink: 1; }
+  to { --ink: 0; }
+}
+@keyframes ink-fill {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ink-slap {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes stair-climb {
+  from { translate: calc(-70cqi) calc(-24cqi); }
+  to { translate: 0 0; }
+}

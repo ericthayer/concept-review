@@ -1,1 +1,34 @@
-/* boil.css: filled in by later build steps (see CHANGELOG). */
+/* Step 4: boil. Art changes in held frames, like animation on twos: three
+   line frames cycle with steps(), never tweened, only while data-live is set
+   (on screen, max six at once) and never with reduced motion or Still Panels.
+   Frames differ only in line wobble, never luminance (no flashing). */
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-motion='full']:not([data-still]) [data-live] .art__line .beat-frame {
+    animation: boil-frame var(--boil-duration) steps(1, end) infinite;
+  }
+  :root[data-motion='full']:not([data-still]) [data-live] .art__line .beat-frame:nth-child(2) {
+    animation-delay: calc(var(--boil-duration) * -2 / 3);
+  }
+  :root[data-motion='full']:not([data-still]) [data-live] .art__line .beat-frame:nth-child(3) {
+    animation-delay: calc(var(--boil-duration) * -1 / 3);
+  }
+  /* Hover never changes layout: it only boils faster (and the panel lifts 2px). */
+  :root[data-motion='full'] dmns-panel:hover {
+    --boil-duration: var(--boil-duration-hover);
+  }
+  :root[data-hidden] .beat-frame {
+    animation-play-state: paused !important;
+  }
+}
+
+@keyframes boil-frame {
+  0% { visibility: visible; }
+  33.333% { visibility: hidden; }
+  100% { visibility: hidden; }
+}
+
+/* Documentary panels never boil. */
+[data-mood='documentary'] .beat-frame,
+[data-documentary] #splash .beat-frame {
+  animation: none !important;
+}
