@@ -77,3 +77,9 @@
 - Staged opacity on every page move so two rooms are never double-exposed at full strength.
 - Header breakpoints keep Membership/Donate visible down to 70rem and never overflow (asserted 360–1920px).
 - Keyboard walkthrough recording script (`scripts/record-walkthrough.ts`).
+
+## Review deploy
+
+- The production CSP now hashes the inline speculation rules. Before, Chromium refused them and doorway
+  prerendering never ran (found by Lighthouse on the deployed site). Covered by a new e2e test.
+- Lighthouse results for the password-protected deploy are in `docs/browser-support.md`.

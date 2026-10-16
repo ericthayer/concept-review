@@ -1,4 +1,5 @@
 /** Step 2: every route is plain, accessible HTML that works with JavaScript disabled. */
+import { readFileSync } from 'node:fs';
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
 import type { Page } from '@playwright/test';
@@ -92,4 +93,19 @@ test('no horizontal page scroll from phone to wide desktop', async ({ page }) =>
       expect(overflow, `${route} at ${width}px`).toBeLessThanOrEqual(0);
     }
   }
+});
+
+// `serve` ignores Netlify's _headers, so apply the built CSP to documents and check nothing inline is refused.
+test('the production CSP allows every inline script', async ({ page }) => {
+  const csp = /Content-Security-Policy: (.+)/.exec(readFileSync('dist/_headers', 'utf8'))?.[1];
+  expect(csp).toBeDefined();
+  await page.route('**/*', async (route) => {
+    if (route.request().resourceType() !== 'document') return route.continue();
+    const response = await route.fetch();
+    return route.fulfill({ response, headers: { ...response.headers(), 'content-security-policy': csp ?? '' } });
+  });
+  const refused: string[] = [];
+  page.on('console', (msg) => { if (msg.text().includes('Content Security Policy')) refused.push(msg.text()); });
+  for (const route of ROUTES) await page.goto(route);
+  expect(refused).toEqual([]);
 });

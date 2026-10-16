@@ -10,7 +10,7 @@ import { loadContent } from '../src/lib/content.js';
 import { buildRouteTable, packRouteTable } from '../src/lib/coordinates.js';
 import { isIsoDate, museumToday } from '../src/lib/dates.js';
 import type { BuildContext } from '../src/templates/context.js';
-import { HEAD_SCRIPT, cspHash } from '../src/templates/layout.js';
+import { HEAD_SCRIPT, SPECULATION_RULES, cspHash } from '../src/templates/layout.js';
 import { renderAtrium } from '../src/templates/pages/atrium.js';
 import { renderDirectory } from '../src/templates/pages/directory.js';
 import { renderNotFound, renderPrograms, renderScience, renderSimple, renderSturmWing, renderVisit } from '../src/templates/pages/editorial.js';
@@ -92,7 +92,7 @@ function buildScripts(): { js: string; vt: string; preload: string[] } {
 function headers(): string {
   const csp = [
     "default-src 'self'",
-    `script-src 'self' ${cspHash(HEAD_SCRIPT)} 'inline-speculation-rules'`,
+    `script-src 'self' ${cspHash(HEAD_SCRIPT)} ${cspHash(SPECULATION_RULES)} 'inline-speculation-rules'`,
     "style-src 'self'",
     "img-src 'self' data:",
     "font-src 'self'",
