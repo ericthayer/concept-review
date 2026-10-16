@@ -1,0 +1,23 @@
+{
+  "theaters": [
+    {
+      "slug": "gates-planetarium",
+      "name": "Gates Planetarium",
+      "description": "TODO: confirm with DMNS",
+      "media": "theater-gates-planetarium"
+    },
+    {
+      "slug": "sturm-infinity-theater",
+      "name": "Sturm Infinity Theater",
+      "description": "Giant-screen films, lectures and evening events.",
+      "ticketNote": "Separate ticket",
+      "media": "theater-sturm-infinity-theater"
+    },
+    {
+      "slug": "laser-shows",
+      "name": "Laser Shows",
+      "description": "TODO: confirm with DMNS",
+      "media": "theater-laser-shows"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "halls": [
+    {
+      "slug": "space-odyssey",
+      "name": "Space Odyssey",
+      "floor": 1,
+      "floorLabel": "Floor 1",
+      "wing": "space",
+      "status": "open",
+      "description": "Hands-on space exhibit answering \"the how\" of exploring beyond Earth.",
+      "media": "hall-space-odyssey"
+    },
+    {
+      "slug": "discovery-zone",
+      "name": "Discovery Zone",
+      "floor": 2,
+      "floorLabel": "Floor 2",
+      "wing": "life",
+      "status": "open",
+      "description": "A space for our youngest guests to explore what science means to them.",
+      "media": "hall-discovery-zone"
+    },
+    {
+      "slug": "expedition-health",
+      "name": "Expedition Health",
+      "floor": 2,
+      "floorLabel": "Floor 2",
+      "wing": "life",
+      "status": "open",
+      "description": "How genes, lifestyle and environment shape the body: what makes you you.",
+      "media": "hall-expedition-health"
+    },
+    {
+      "slug": "wildlife-halls",
+      "name": "Wildlife Halls",
+      "floor": 2,
+      "floorLabel": "Floors 2–3",
+      "wing": "wildlife",
+      "status": "open",
+      "spansFloors": [2, 3],
+      "description": "Over 90 dioramas of animals and habitats from around the world.",
+      "media": "hall-wildlife-halls"
+    },
+    {
+      "slug": "egyptian-mummies",
+      "name": "Egyptian Mummies",
+      "floor": 3,
+      "floorLabel": "Floor 3",
+      "wing": "deep-time",
+      "status": "open",
+      "description": "Unwrap the stories of two ancient Egyptian women.",
+      "media": "hall-egyptian-mummies"
+    },
+    {
+      "slug": "konovalenko",
+      "name": "Konovalenko: Gem Carvings of Russian Folklife",
+      "shortName": "Konovalenko",
+      "floor": 3,
+      "floorLabel": "Floor 3",
+      "wing": "deep-time",
+      "status": "open",
+      "description": "The only Vasily Konovalenko gem sculptures on public display outside Moscow.",
+      "media": "hall-konovalenko"
+    },
+    {
+      "slug": "prehistoric-journey",
+      "name": "Prehistoric Journey",
+      "floor": 3,
+      "floorLabel": "Floor 3",
+      "wing": "deep-time",
+      "status": "open",
+      "description": "The evolution of life on Earth, from single cells to dinosaurs to today.",
+      "media": "hall-prehistoric-journey"
+    },
+    {
+      "slug": "gems-and-minerals",
+      "name": "Gems and Minerals",
+      "floor": null,
+      "floorLabel": "TODO: confirm with DMNS",
+      "wing": "sealed",
+      "status": "sealed",
+      "description": "Closed for major renovation and expansion.",
+      "media": "hall-gems-and-minerals"
+    },
+    {
+      "slug": "nature-play",
+      "name": "Nature Play",
+      "floor": 0,
+      "floorLabel": "Outdoor",
+      "wing": "plaza",
+      "status": "open",
+      "description": "A 4-acre immersive outdoor experience in City Park.",
+      "media": "hall-nature-play"
+    }
+  ],
+  "objectPlates": 3,
+  "objectPlateName": "TODO: confirm with DMNS",
+  "objectPlateMeta": "TODO: confirm with DMNS",
+  "objectPlateText": "TODO: confirm with DMNS"
+}

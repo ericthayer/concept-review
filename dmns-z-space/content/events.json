@@ -1,0 +1,8 @@
+{
+  "events": [
+    { "id": "event-1", "name": "TODO: confirm with DMNS", "date": null, "dateLabel": "TODO: confirm with DMNS", "location": "TODO: confirm with DMNS" },
+    { "id": "event-2", "name": "TODO: confirm with DMNS", "date": null, "dateLabel": "TODO: confirm with DMNS", "location": "TODO: confirm with DMNS" },
+    { "id": "event-3", "name": "TODO: confirm with DMNS", "date": null, "dateLabel": "TODO: confirm with DMNS", "location": "TODO: confirm with DMNS" },
+    { "id": "event-4", "name": "TODO: confirm with DMNS", "date": null, "dateLabel": "TODO: confirm with DMNS", "location": "TODO: confirm with DMNS" }
+  ]
+}

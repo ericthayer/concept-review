@@ -1,0 +1,204 @@
+{
+  "media": [
+    {
+      "id": "hall-space-odyssey",
+      "src": null,
+      "alt": "Placeholder plate for Space Odyssey. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Space Odyssey",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-discovery-zone",
+      "src": null,
+      "alt": "Placeholder plate for Discovery Zone. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Discovery Zone",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-expedition-health",
+      "src": null,
+      "alt": "Placeholder plate for Expedition Health. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Expedition Health",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-wildlife-halls",
+      "src": null,
+      "alt": "Placeholder plate for Wildlife Halls. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Wildlife Halls",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-egyptian-mummies",
+      "src": null,
+      "alt": "Placeholder plate for Egyptian Mummies. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Egyptian Mummies",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-konovalenko",
+      "src": null,
+      "alt": "Placeholder plate for Konovalenko: Gem Carvings of Russian Folklife. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Konovalenko",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-prehistoric-journey",
+      "src": null,
+      "alt": "Placeholder plate for Prehistoric Journey. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Prehistoric Journey",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-gems-and-minerals",
+      "src": null,
+      "alt": "Placeholder plate for Gems and Minerals. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Gems and Minerals",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "hall-nature-play",
+      "src": null,
+      "alt": "Placeholder plate for Nature Play. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Nature Play",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "exhibition-mythic-creatures",
+      "src": null,
+      "alt": "Placeholder plate for Mythic Creatures: Dragons, Unicorns & Mermaids. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Mythic Creatures",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "exhibition-changing-landscapes",
+      "src": null,
+      "alt": "Placeholder plate for Changing Landscapes: Inside Venice, Mesa Verde, and Rapa Nui. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Changing Landscapes",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "exhibition-magical-winter-nights",
+      "src": null,
+      "alt": "Placeholder plate for Magical Winter Nights. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Magical Winter Nights",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "exhibition-pokemon-fossil-museum",
+      "src": null,
+      "alt": "Placeholder plate for Pokémon Fossil Museum. Name only; no third-party imagery.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Pokémon Fossil Museum",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "theater-gates-planetarium",
+      "src": null,
+      "alt": "Placeholder plate for Gates Planetarium. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Gates Planetarium",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "theater-sturm-infinity-theater",
+      "src": null,
+      "alt": "Placeholder plate for Sturm Infinity Theater. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Sturm Infinity Theater",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "theater-laser-shows",
+      "src": null,
+      "alt": "Placeholder plate for Laser Shows. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Laser Shows",
+      "width": 1600,
+      "height": 1000
+    },
+    {
+      "id": "object-plate-1",
+      "src": null,
+      "alt": "Placeholder object plate. Object to be confirmed with DMNS.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Object to confirm",
+      "width": 1000,
+      "height": 1250
+    },
+    {
+      "id": "object-plate-2",
+      "src": null,
+      "alt": "Placeholder object plate. Object to be confirmed with DMNS.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Object to confirm",
+      "width": 1000,
+      "height": 1250
+    },
+    {
+      "id": "object-plate-3",
+      "src": null,
+      "alt": "Placeholder object plate. Object to be confirmed with DMNS.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Object to confirm",
+      "width": 1000,
+      "height": 1250
+    },
+    {
+      "id": "behind-the-glass",
+      "src": null,
+      "alt": "Placeholder plate for Behind the Glass. DMNS photography to be supplied.",
+      "credit": "TODO: confirm with DMNS",
+      "placeholder": true,
+      "label": "Behind the Glass",
+      "width": 1600,
+      "height": 1000
+    }
+  ]
+}
