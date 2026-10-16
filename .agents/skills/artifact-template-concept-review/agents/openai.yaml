@@ -1,0 +1,4 @@
+interface:
+  display_name: "Concept Review"
+  short_description: "Compare two website concepts and collect client feedback"
+  default_prompt: "Use $artifact-template-concept-review to present two client website concepts with feedback."

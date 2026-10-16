@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "id": "client-review",
+  "revision": "01",
+  "brand": {
+    "name": "Client name",
+    "mark": "c",
+    "subtitle": "WEBSITE EXPLORATIONS",
+    "footer": "CLIENT NAME / DESIGN REVIEW"
+  },
+  "eyebrow": "DESIGN STUDY / TWO DIRECTIONS",
+  "heading": [
+    "One vision.",
+    "Two ways forward."
+  ],
+  "introduction": [
+    "An expressive introduction.",
+    "A focused way to explore."
+  ],
+  "concepts": [
+    {
+      "id": "a",
+      "slug": "concept-a",
+      "title": "Editorial",
+      "tagline": "Expressive. Spacious. Direct.",
+      "previewLabel": "concept A / editorial",
+      "description": "An editorial approach built around a clear statement and a focused sequence of content.",
+      "linkLabel": "Explore concept A",
+      "attributes": [
+        "STRONG TYPOGRAPHY",
+        "STORY-LED"
+      ]
+    },
+    {
+      "id": "b",
+      "slug": "concept-b",
+      "title": "Workspace",
+      "tagline": "Focused. Structured. Useful.",
+      "previewLabel": "concept B / workspace",
+      "description": "A structured approach built around navigation, quick scanning, and purposeful actions.",
+      "linkLabel": "Explore concept B",
+      "attributes": [
+        "CALM NEUTRALS",
+        "TASK-LED"
+      ]
+    }
+  ]
+}

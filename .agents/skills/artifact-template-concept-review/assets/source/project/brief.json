@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "goal": "",
+  "audience": "",
+  "primaryAction": "",
+  "aesthetics": "",
+  "functionality": [],
+  "references": [],
+  "contentSource": "",
+  "constraints": [
+    "Preserve approved visual checkpoints."
+  ],
+  "directions": [
+    {
+      "id": "a",
+      "rationale": "",
+      "tradeoffs": "",
+      "status": "draft"
+    },
+    {
+      "id": "b",
+      "rationale": "",
+      "tradeoffs": "",
+      "status": "draft"
+    }
+  ]
+}

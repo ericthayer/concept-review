@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Website Concepts"
+  short_description: "Turn a client brief into two reviewable website concepts"
+  default_prompt: "Use $build-website-concepts to create two website concepts from my brief and visual references."

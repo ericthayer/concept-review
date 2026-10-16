@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "ethayer-portfolio-directions",
+  "revision": "01",
+  "brand": {
+    "name": "ERIC THAYER",
+    "mark": "et",
+    "subtitle": "PORTFOLIO EXPLORATIONS",
+    "footer": "ERIC THAYER / DESIGN ENGINEER",
+    "website": "https://ethayer.design/"
+  },
+  "eyebrow": "DESIGN STUDY / TWO DIRECTIONS",
+  "heading": [
+    "One portfolio.",
+    "Two ways in."
+  ],
+  "introduction": [
+    "A cinematic expression of the work.",
+    "A thoughtful workspace to explore it."
+  ],
+  "concepts": [
+    {
+      "id": "a",
+      "slug": "concept-a",
+      "title": "The Interactive Reel",
+      "tagline": "Cinematic. Expressive. Authored.",
+      "previewLabel": "ethayer.design / interactive reel",
+      "description": "Bold typography, choreographed reveals, and a horizontal project reel. Built for a memorable first impression.",
+      "linkLabel": "Explore the reel",
+      "attributes": [
+        "GRAPHITE + SIGNAL ORANGE",
+        "MOTION-LED"
+      ]
+    },
+    {
+      "id": "b",
+      "slug": "concept-b",
+      "title": "Eric’s Workspace",
+      "tagline": "Focused. Useful. Familiar.",
+      "previewLabel": "ethayer.design / workspace",
+      "description": "Application navigation, searchable projects, and contextual previews. Built for a closer look at the work.",
+      "linkLabel": "Enter the workspace",
+      "attributes": [
+        "WARM NEUTRALS + INDIGO",
+        "EXPLORATION-LED"
+      ]
+    }
+  ]
+}

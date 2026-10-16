@@ -1,0 +1,13 @@
+{
+  "name": "concept-review",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "build": "node .agents/skills/artifact-template-concept-review/assets/source/scripts/build.mjs --project example --out example/dist --release",
+    "scaffold": "node .agents/skills/artifact-template-concept-review/assets/source/scripts/scaffold.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm test && npm run build"
+  }
+}

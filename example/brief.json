@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "goal": "Present Eric Thayer’s design engineering and front-end work through two distinct portfolio experiences.",
+  "audience": "Hiring managers, engineering and design leaders, prospective collaborators.",
+  "primaryAction": "Explore selected work, then find résumé or contact information.",
+  "aesthetics": "Preserve the existing Interactive Reel and Eric’s Workspace concepts. Preserve the warm neutral comparison shell.",
+  "functionality": [
+    "Two live previews with Desktop/Mobile modes",
+    "Direct concept routes and return-to-review navigation",
+    "Project exploration and workspace search",
+    "Submit structured client feedback through Netlify Forms",
+    "Download response without submitting"
+  ],
+  "references": [
+    {
+      "kind": "url",
+      "source": "https://ethayer-portfolio-directions.ethayer-design.chatgpt.site",
+      "takeaways": "Preserve the comparison composition, typography, paired browser frames and descriptive concept metadata."
+    }
+  ],
+  "contentSource": "Original Site source commit dc0de4cb03905754a73f672ded2645444b38aea1; existing ethayer.design portfolio content.",
+  "constraints": [
+    "No invented outcomes or client claims.",
+    "No live AI integration.",
+    "Feedback is advisory, not project approval.",
+    "Browser QA unavailable in the managed source environment."
+  ],
+  "directions": [
+    {
+      "id": "a",
+      "rationale": "Expressive typography and motion demonstrate creative range.",
+      "tradeoffs": "More animation and larger display type need careful mobile and reduced-motion treatment.",
+      "status": "ready"
+    },
+    {
+      "id": "b",
+      "rationale": "Application patterns expose searchable work and artifacts.",
+      "tradeoffs": "More controls and navigation states increase interaction maintenance.",
+      "status": "ready"
+    }
+  ]
+}
